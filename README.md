@@ -1,6 +1,7 @@
 # TeachingDatabase
 ICT342 Teaching Database Project
 
-Project complete
+Project Good complete
+
 
 Adjusting now
