@@ -1,6 +1,6 @@
 # TeachingDatabase
 ICT342 Teaching Database Project
 
-Project test
+Project complete
 
 Adjusting now
