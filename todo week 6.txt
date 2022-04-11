@@ -10,7 +10,7 @@
 	- Explain the project functionality
 	- Shows how the software is being used
 
-[]
-	- 
-	- 
-	- 
+[Incomplete] Creating SQL and ERD 
+	- Implementation of secured database
+	- Managing online database systems
+	
