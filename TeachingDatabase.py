@@ -1,6 +1,17 @@
 from bottle import route, run, request, response, template, HTTPResponse
 # from xml.dom import minidom, Node
-from classDb import DatabaseConnect as dbcon
+from DatabaseDriverClass import DatabaseConnect as dbcon
+
+
+def connect_database():
+    """
+    Currently, Databse connection is being made in every new function in this class.
+    We have to connect to database once not everytime. I am looking how we can achieve this.
+    I will implement this function, so that we can reuse same database object in every new function.
+    
+    """
+    pass
+
 
 @route('/')
 def get_first_page():
