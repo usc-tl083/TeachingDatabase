@@ -36,7 +36,7 @@
       $(document).ready(function(){
 			$("#savestaff").click(function(){
 				$.ajax( {
-					url: "http://172.23.20.82:80/saveStaff?staffDetail=" + buildJourneyXML(),
+					url: "http://localhost/saveStaff?staffDetail=" + buildJourneyXML(),
 					dataType: "xml"
 				})
 				 .done( function(data) {
@@ -46,7 +46,7 @@
 			});
 			$("#getstaff").click(function(){
 				$.ajax( {
-					url: "http://172.23.20.82:80/getStaff?staffid=" + $("#Staff_id").val(),
+					url: "http://localhost/getStaff?staffid=" + $("#Staff_id").val(),
 					dataType: "text" // force the returned result as a string for printing
 					// Use "xml" if you want to loop though the data object
 					//dataType: "xml"
@@ -103,5 +103,6 @@
 
 
     </script>
+    <a href="create_staff"><h3>Add a New Staff Member<h3></a>
 </body>
 </html>

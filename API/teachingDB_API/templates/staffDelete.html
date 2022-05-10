@@ -1,0 +1,111 @@
+<html>
+<head>
+    <title>Delete Staff Page</title>
+	<meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $("#adminDeleteButton").click(function(){
+                $.ajax( {
+                url: "http://172.23.20.81:80/staffIdDelete?staffXML=" + deleteDetail(),
+                method: "get",
+                dataType: "text" // force the returned result as a string for printing
+            })      
+                 window.alert("Staff record deleted.")
+                 .done( function(msg) {
+                 });
+
+            });
+            
+        });
+
+        function deleteDetail () {
+            deldetxml = "<staff><form>" +
+
+            "<delstaffid>" + $("#delstaffid").val() + "</delstaffid>" +
+
+            "</form></staff>";
+            return deldetxml;
+        }
+
+    </script>
+
+    <style>
+
+        .button {
+            background-color: lightgray;
+            border: thick;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 200px;
+        }
+
+        h1, h2, h3 {
+            color: black;
+            text-align: center;
+
+            font-family: sans-serif;
+            font-size: 30px;
+        }
+
+        table{
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: fit-content;
+        }
+
+        td, th{
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;}
+
+        p{
+            font-family: sans-serif;
+            font-size: 15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<form>
+    <center>
+
+    <h1>Administrator Page</h1>
+
+    <h2>Delete Staff Record</h2>
+    <p>Enter a staff id to delete a staff record.</p>
+
+    <table width="100%">
+        <tr>
+            <th>Staff ID</th>
+        </tr>     
+
+        <tr>
+            <td width="(100/x)%"><input type="number" id="delstaffid" name="delidstaff" placeholder="Staff ID Number" maxlength="9" required min="1"></td>
+        </tr>
+    </table><br><br>
+
+        <button type="submit" class="button" id="adminDeleteButton">Delete</button><br><br><br><br>
+
+        <center><a href="Admin_Portal_2.html"><button type="button" class="button">BACK</button>
+
+    </center>
+</form>
+</body>
+
+</html>
