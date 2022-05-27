@@ -6,7 +6,7 @@ from classDb import DatabaseConnect as dbcon
 
 @route('/', method="get")
 def login():
- return template('./templates/Admin_Portal')
+ return template('./templates/Login')
 
 def check_login(username, password):
  pass
@@ -20,11 +20,7 @@ def do_login():
     if check_login(Username, Password):
         return "<p>Your login information was correct.</p>"
     else:
-        return template('./templates/Admin_Portal_2')
-
-@route('/admin_portal')
-def do_admin_portal():
-    return template('./templates/Admin_Page')
+        return template('./templates/Admin_Page')
 
 @route('/admin_portal/aqfrecords')
 def do_aqfrecords():
