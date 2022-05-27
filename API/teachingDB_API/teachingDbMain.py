@@ -11,6 +11,8 @@ def login():
 def check_login(username, password):
  pass
 #does not work, someone else take a look at it got bored so i made incorrect user/pass work
+
+
 @route('/login', method="post")
 def do_login():
     Username = request.forms.get('username')
@@ -22,7 +24,7 @@ def do_login():
 
 @route('/admin_portal')
 def do_admin_portal():
-    return template('./templates/Admin_Portal_2')
+    return template('./templates/Admin_Page')
 
 @route('/admin_portal/aqfrecords')
 def do_aqfrecords():
