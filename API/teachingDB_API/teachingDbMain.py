@@ -124,52 +124,70 @@ def create_staff():
             var_first_name = request.query.First_Name
             var_last_name = request.query.Last_Name
             var_email = request.query.EmailID
+            var_address = request.query.Address
             var_phoneno = request.query.PhoneNo
- 
-            selectQuery = (
-                "INSERT INTO staff(Title, First_Name, Last_Name, EmailID, PhoneNo) VALUES (%s, %s, %s, %s, %s)"
+
+            var_NameOfQualification = request.query.NameOfQualification
+            var_AQFLevel_ID = request.query.AQFLevel_ID
+            var_Subject_Area = request.query.Subject_Area
+            var_Institution_Name = request.query.Institution_Name
+            var_Institution_Country = request.query.Institution_Country
+            var_Full_Name_Of_Award = request.query.Full_Name_Of_Award
+            var_Awarded_Year = request.query.Awarded_Year
+
+            
+            StaffInsert = (
+                "INSERT INTO staff(Title, First_Name, Last_Name, EmailID, Address, PhoneNo) VALUES (%s, %s, %s, %s, %s, %s)" 
             )
+            QualInsert = (
+                "INSERT INTO Qualification(NameOfQualification, AQFLevel_ID, Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year) VALUES (%s, %s, %s, %s, %s, %s, %s) "
+                         )
+         
+            
 
             dcurs = conx.cursor(buffered=True)
 
-            data_query = (var_title, var_first_name, var_last_name, var_email, var_phoneno)
+            staff_query = (var_title, var_first_name, var_last_name, var_email, var_address, var_phoneno)
+            qual_query = (var_NameOfQualification, var_AQFLevel_ID, var_Subject_Area, var_Institution_Name, var_Institution_Country, var_Full_Name_Of_Award, var_Awarded_Year)
+            
+
 
             dcurs = conx.cursor(buffered=True)
 
-            dcurs.execute(selectQuery, data_query)
-            new_StaffID = dcurs.lastrowid
+            dcurs.execute(StaffInsert, staff_query)
+            dcurs.execute(QualInsert, qual_query)
+            StaffID = dcurs.lastrowid
             conx.commit()
             dcurs.close()
             
         return template('./templates/create_staff.tpl')
 
-@route('/staff/<staffID>')
-def edit_staff(staffID):
+@route('/staff/<StaffID>', method='get')
+def edit_staff(StaffID):
     with dbcon() as db:
-
+        
+        
         conx = db.opendb()
+        
 
-        if request.GET:
+        selectQuery = (
+            "SELECT StaffID, First_Name, Last_Name FROM staff")
 
-            staffID = request.query.staffid
-            first_name = request.query.First_Name
-            last_name = request.query.Last_Name
-
-            selectQuery = (
-                "SELECT staff(StaffID, First_Name, Last_Name) FROM WHERE StaffID = %s")
-            
-            data_query = (staffID, first_name, last_name)
-
-            dcurs = conx.cursor(buffered=True)
-
-            dcurs.execute(selectQuery, data_query)
-
-
-            if dcurs.rowcount > 0:
-                staffdetails = dcurs.fetchall()   
+        if StaffID in selectQuery:
+            print(selectQuery[StaffID])
 
             
-            dcurs.close()
+            
+        dcurs = conx.cursor(buffered=True)
+
+        dcurs.execute(selectQuery)
+
+        if dcurs.rowcount > 0:
+            staffdetails = dcurs.fetchall()
+
+
+            
+        dcurs.close()
   
         return template('./templates/viewstaff.tpl', staff_list=staffdetails)
         
