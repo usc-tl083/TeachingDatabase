@@ -19,7 +19,7 @@
         <tr>
             <td>{{staffdetails[0]}}</td>
             <td>{{staffdetails[1]}}</td>
-			<td>{{staffdetails[2]}}</td>
+            <td>{{staffdetails[2]}}</td>
         </tr>
         % end
 

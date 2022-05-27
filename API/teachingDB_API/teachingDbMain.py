@@ -125,14 +125,41 @@ def create_staff():
             var_last_name = request.query.Last_Name
             var_email = request.query.EmailID
             var_phoneno = request.query.PhoneNo
+
+            var_NameOfQualification = request.query.NameOfQualification
+            var_AQFLevel_ID = request.query.AQFLevel_ID
+            var_Subject_Area = request.query.Subject_Area
+            var_Institution_Name = request.query.Institution_Name
+            var_Institution_Country = request.query.Institution_Country
+            var_Full_Name_Of_Award = request.query.Full_Name_Of_Award
+            var_Awarded_Year = request.query.Awarded_Year
+
+            var_Building_Name = request.query.Building_Name
+            var_Building_Number = request.query.Building_Number
+            var_Street_Name = request.query.Street_Name
+            var_City = request.query.City
+            var_State = request.query.State
+            var_ZIPCode = request.query.ZIPCode
+            var_Country =request.query.Country
+            
  
             selectQuery = (
                 "INSERT INTO staff(Title, First_Name, Last_Name, EmailID, PhoneNo) VALUES (%s, %s, %s, %s, %s)"
-            )
+                )
+
+            selectQuery = (
+                "INSERT INTO Qualification(NameOfQualification, AQFLevel_ID, Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                )
+
+            selectQuery = (
+                "INSERT INTO Address(Building_Name, Building_Number, Street_Name, City, State, ZIPCode, Country) VALUES (%s, %s ,%s, %s, %s, %s, %s)"
+                )
 
             dcurs = conx.cursor(buffered=True)
 
-            data_query = (var_title, var_first_name, var_last_name, var_email, var_phoneno)
+            data_query = (var_title, var_first_name, var_last_name, var_email, var_phoneno,
+                          var_NameOfQualification, var_AQFLevel_ID, var_Subject_Area, var_Institution_Name, var_Institution_Country, var_Full_Name_Of_Award, var_Awarded_Year,
+                          var_Building_Name, var_Building_Number, var_Street_Name, var_City, var_State, var_ZIPCode, var_Country)
 
             dcurs = conx.cursor(buffered=True)
 
@@ -143,33 +170,32 @@ def create_staff():
             
         return template('./templates/create_staff.tpl')
 
-@route('/staff/<staffID>')
-def edit_staff(staffID):
+@route('/staff/<StaffID>', method='get')
+def edit_staff(StaffID):
     with dbcon() as db:
-
+        
+        
         conx = db.opendb()
+        
 
-        if request.GET:
+        selectQuery = (
+            "SELECT StaffID, First_Name, Last_Name FROM staff")
 
-            staffID = request.query.staffid
-            first_name = request.query.First_Name
-            last_name = request.query.Last_Name
-
-            selectQuery = (
-                "SELECT staff(StaffID, First_Name, Last_Name) FROM WHERE StaffID = %s")
-            
-            data_query = (staffID, first_name, last_name)
-
-            dcurs = conx.cursor(buffered=True)
-
-            dcurs.execute(selectQuery, data_query)
-
-
-            if dcurs.rowcount > 0:
-                staffdetails = dcurs.fetchall()   
+        if StaffID in selectQuery:
+            print(selectQuery[StaffID])
 
             
-            dcurs.close()
+            
+        dcurs = conx.cursor(buffered=True)
+
+        dcurs.execute(selectQuery)
+
+        if dcurs.rowcount > 0:
+            staffdetails = dcurs.fetchall()
+
+
+            
+        dcurs.close()
   
         return template('./templates/viewstaff.tpl', staff_list=staffdetails)
         
