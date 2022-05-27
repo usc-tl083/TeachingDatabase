@@ -50,40 +50,33 @@
 <body>
 <center><img src="https://i.imgur.com/GrJSEiU.png"/></center>
 <center><img src="https://i.imgur.com/6BxZHQt.png"/></center>
+
 </br>
 </br>
 <!-- Password -->
-<center><form action="/login" method="post">
-    <table>
-        <tr>
-            <td>Username:</td>
-            <td>
-                <input name="username" type="text" />
-            </td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td>
-                <input name="password" type="password" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input value="login" type="submit" />
-            </td>
-        </tr>
-    </table>
-    
-</form></center>
-
-<!-- Back Button -->
-<div style="
-height:100%;
-width:100%;">
-
-<br><br><br><br>
-<center><a href="/Home"><button type="button" class="button">BACK</button></a></center>
-</div>
+<center>
+    <form action="/login" method="post">
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td>
+                    <input name="username" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>
+                    <input name="password" type="password" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input value="login" type="submit" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
 
 </body>
 </html>
