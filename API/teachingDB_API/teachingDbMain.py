@@ -22,7 +22,7 @@ def do_login():
     else:
         return template('./templates/Admin_Page')
 
-@route('/admin_portal/aqfrecords')
+@route('/admin_page/aqfrecords')
 def do_aqfrecords():
      with dbcon() as db:
         conx = db.opendb()

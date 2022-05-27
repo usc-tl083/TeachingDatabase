@@ -49,7 +49,7 @@
     </head>
 
 <!-- Title -->
-<title>Admin Portal 2</title>
+<title>Admin Page</title>
 
 <body>
 <center><img src="https://i.imgur.com/GrJSEiU.png"/></center>
