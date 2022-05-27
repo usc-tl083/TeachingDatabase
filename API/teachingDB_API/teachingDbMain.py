@@ -124,6 +124,7 @@ def create_staff():
             var_first_name = request.query.First_Name
             var_last_name = request.query.Last_Name
             var_email = request.query.EmailID
+            var_address = request.query.Address
             var_phoneno = request.query.PhoneNo
 
             var_NameOfQualification = request.query.NameOfQualification
@@ -134,19 +135,9 @@ def create_staff():
             var_Full_Name_Of_Award = request.query.Full_Name_Of_Award
             var_Awarded_Year = request.query.Awarded_Year
 
-            var_Building_Name = request.query.Building_Name
-            var_Building_Number = request.query.Building_Number
-            var_Street_Name = request.query.Street_Name
-            var_City = request.query.City
-            var_State = request.query.State
-            var_ZIPCode = request.query.ZIPCode
-            var_Country =request.query.Country
             
-            AddInsert = (
-                "INSERT INTO Address(Building_Name, Building_Number, Street_Name, City, State, ZIPCode, Country) VALUES (%s, %s ,%s, %s, %s, %s, %s)"
-                )
             StaffInsert = (
-                "INSERT INTO staff(Title, First_Name, Last_Name, EmailID, PhoneNo) VALUES (%s, %s, %s, %s, %s)" 
+                "INSERT INTO staff(Title, First_Name, Last_Name, EmailID, Address, PhoneNo) VALUES (%s, %s, %s, %s, %s, %s)" 
             )
             QualInsert = (
                 "INSERT INTO Qualification(NameOfQualification, AQFLevel_ID, Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year) VALUES (%s, %s, %s, %s, %s, %s, %s) "
@@ -156,16 +147,15 @@ def create_staff():
 
             dcurs = conx.cursor(buffered=True)
 
-            staff_query = (var_title, var_first_name, var_last_name, var_email, var_phoneno)
+            staff_query = (var_title, var_first_name, var_last_name, var_email, var_address, var_phoneno)
             qual_query = (var_NameOfQualification, var_AQFLevel_ID, var_Subject_Area, var_Institution_Name, var_Institution_Country, var_Full_Name_Of_Award, var_Awarded_Year)
-            add_query = (var_Building_Name, var_Building_Number, var_Street_Name, var_City, var_State, var_ZIPCode, var_Country)
+            
 
 
             dcurs = conx.cursor(buffered=True)
 
             dcurs.execute(StaffInsert, staff_query)
             dcurs.execute(QualInsert, qual_query)
-            dcurs.execute(AddInsert, add_query)
             StaffID = dcurs.lastrowid
             conx.commit()
             dcurs.close()

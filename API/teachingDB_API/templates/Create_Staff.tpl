@@ -14,6 +14,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Address</th>
             <th>Phone Number</th>
         </tr>
         <tr>
@@ -21,6 +22,7 @@
             <th><input type="text" size="20" maxlength="100" name="First_Name"></th>
             <th><input type="text" size="20" maxlength="100" name="Last_Name"></th>
             <th><input type="text" size="20" maxlength="100" name="EmailID"></th>
+            <th><input type="text" size="20" maxlength="100" name="Address"></th>
             <th><input type="text" size="20" maxlength="100" name="PhoneNo"></th>
         </tr>
     </table>
@@ -50,34 +52,6 @@
             <th><input type="text" size="20" maxlength="100" name="Institution_Country"></th>
             <th><input type="text" size="20" maxlength="100" name="Full_Name_Of_Award"></th>
             <th><input type="text" size="20" maxlength="100" name="Awarded_Year"></th>
-        </tr>
-    </table>
-</centre>
-</body>
-
-
-<body>
-<center>
-<h3>Address</h3>
-    <table>
-
-        <tr>
-			<th>Building</th>
-            <th>Building Number</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>State</th>
-            <th>ZIPCode</th>
-            <th>Country</th>
-        </tr>
-        <tr>
-            <th><input type="text" size="30" maxlength="100" name="Building_Name"></th>
-            <th><input type="text" size="20" maxlength="100" name="Building_Number"></th>
-            <th><input type="text" size="30" maxlength="100" name="Street_Name"></th>
-            <th><input type="text" size="50" maxlength="100" name="City"></th>
-            <th><input type="text" size="20" maxlength="100" name="State"></th>
-            <th><input type="text" size="20" maxlength="100" name="ZIPCode"></th>
-            <th><input type="text" size="20" maxlength="100" name="Country"></th>
         </tr>
     </table>
 </centre>
