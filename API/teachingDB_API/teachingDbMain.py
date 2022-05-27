@@ -4,17 +4,7 @@ from bottle import html_escape, route, run, request, get, post, response, templa
 from classDb import DatabaseConnect as dbcon
 
 
-@route('/home')
-def home():
-    return template('./templates/Home_Page')
-
-
-@route('/Teaching_Staff_Portal')
-def Teaching_Staff_Portal():
- return template('./templates/Teaching_Staff_Portal')
-
-
-@route('/login', method="get")
+@route('/', method="get")
 def login():
  return template('./templates/Admin_Portal')
 
