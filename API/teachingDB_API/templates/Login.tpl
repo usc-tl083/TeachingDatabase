@@ -115,8 +115,8 @@
                     </div>
                     <div class="input-box"> 
                         <i class="fa-solid fa-key"></i>
-                        <input name="Password" type="password" placeholder="Password">
-                        <span>
+                        <input name="Password" type="password" placeholder="Password" id="myInput">
+                        <span class="eye" onclick="eyePassword()">
                             <i id="hide1" class="fa fa-eye"></i>
                             <i id="hide2" class="fa fa-eye-slash" ></i>
                         </span>
@@ -126,5 +126,24 @@
                   
                 </form>
             </div>
+
+            <script>
+                function eyePassword(){
+                    var x = document.getElementById("myInput");
+                    var y = document.getElementById("hide1");
+                    var z = document.getElementById("hide2");
+
+                    if(x.type === 'password'){
+                        x.type = "text";
+                        y.style.display = "block";
+                        z.style.display = "none";
+                    }
+                    else{
+                        x.type = "password";
+                        y.style.display = "none";
+                        z.style.display = "block";
+                    }
+                }
+            </script>
     </body>
 </html>
