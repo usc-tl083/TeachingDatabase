@@ -142,6 +142,8 @@ def create_staff():
                 "INSERT INTO staff(Title, First_Name, Last_Name, EmailID, PhoneNo) VALUES (%s, %s, %s, %s, %s)"
             )
 
+            dcurs = conx.cursor(buffered=True)
+
             data_query = (var_title, var_first_name, var_last_name, var_email, var_phoneno)
 
             dcurs = conx.cursor(buffered=True)
@@ -153,9 +155,36 @@ def create_staff():
             
         return template('./templates/create_staff.tpl')
 
+@route('/staff/<staffID>')
+def edit_staff(staffID):
+    with dbcon() as db:
 
-    
-    
-    
+        conx = db.opendb()
 
-run(host='localhost', port=8080, debug=True, reloader=True)
+        if request.GET:
+
+            staffID = request.query.staffid
+            first_name = request.query.First_Name
+            last_name = request.query.Last_Name
+
+            selectQuery = (
+                "SELECT staff(StaffID, First_Name, Last_Name) FROM WHERE StaffID = %s")
+            
+            data_query = (staffID, first_name, last_name)
+
+            dcurs = conx.cursor(buffered=True)
+
+            dcurs.execute(selectQuery, data_query)
+
+
+            if dcurs.rowcount > 0:
+                staffdetails = dcurs.fetchall()   
+
+            
+            dcurs.close()
+  
+        return template('./templates/viewstaff.tpl', staff_list=staffdetails)
+        
+
+   
+run(host='localhost', port=8080, debug=True)

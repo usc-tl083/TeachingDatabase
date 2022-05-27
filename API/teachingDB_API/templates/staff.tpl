@@ -17,7 +17,7 @@
         </tr>
         % for staff in staff_list:
         <tr>
-            <td>{{staff[0]}}</td>
+            <td><a href="/staff/{{staff[0]}}"><button type="button" class="button">{{staff[0]}}</button></a></td>
             <td>{{staff[1]}}</td>
 			<td>{{staff[2]}}</td>
         </tr>
