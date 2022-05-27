@@ -108,7 +108,8 @@
             <div class="form-box">
                 <h1>Login Here</h1>
 
-                <form action="/login" method="post"> 
+                <!-- If successful will take user to Admin Form -->
+                <form action="/admin" method="post"> 
                     <div class="input-box"> 
                         <i class="fa-solid fa-user"></i>
                         <input name="username" type="text" placeholder="Username">
