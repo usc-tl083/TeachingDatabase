@@ -9,14 +9,14 @@
         <style>
                 
             body {
-               /* background-image: img src="templates/images/pic-1.png"; */
+                background-image: img src="https://cdn.discordapp.com/attachments/970976688114655242/979883795643785326/pic-1.png"; 
                 background-size: cover;
                 background-position: center;
                 font-family: sans-serif;
             }
 
             header {
-                background-color: #fff;
+                background-color: #ccc;
                 padding: 30px;
             }
 
@@ -59,12 +59,25 @@
                 color: #ccc;
             }
 
+            .fa {
+                margin-right: 10px;
+            }
+
+            .eye {
+                position: absolute;
+            }
+
             #hide1 {
                 /* Hiding and showing the password */
                 display: none;
             }
 
             .login-btn{
+                /* login button */
+                
+            }
+
+            .form-box input[type=submit]{
                 /* login button */
                 margin:40px auto 20px;
                 width:80%;
@@ -74,16 +87,12 @@
                 border: 1px solid #fff;
                 cursor: pointer;
                 background:transparent;
-            }
-
-            .login-btn input{
-                /* login button */
                 color: #fff;
                 font-size: 16px;
             }
 
         </style>
-        <link rel="stylesheet" href= "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css">
+        <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     </head>
 
     <!-- Title -->
@@ -91,7 +100,7 @@
 
         <!-- Logo & Admin login Button -->
         <header>
-            <img src="https://cdn.discordapp.com/attachments/951409007657103362/979707040865869824/usc_logo.png"/>
+            <img src="https://cdn.discordapp.com/attachments/951409007657103362/979707040865869824/usc_logo.png" style="width:25%;height:25%;"/>
             <a href="/admin_page"><button type="button" class="button">Admin Login</button></a>
         </header>
         
@@ -101,18 +110,20 @@
 
                 <form action="/login" method="post"> 
                     <div class="input-box"> 
+                        <i class="fa-solid fa-user"></i>
                         <input name="username" type="text" placeholder="Username">
                     </div>
                     <div class="input-box"> 
+                        <i class="fa-solid fa-key"></i>
                         <input name="Password" type="password" placeholder="Password">
                         <span>
-                            <i id="hide1" class="fa fa-eye-slash"></i>
-                            <i id="hide2" class="fa fa-eye" ></i>
+                            <i id="hide1" class="fa fa-eye"></i>
+                            <i id="hide2" class="fa fa-eye-slash" ></i>
                         </span>
                     </div>
-                    <div classs="login-btn">
-                        <input value="LOGIN" type="submit"/>  
-                    </div>
+                    
+                    <input value="LOGIN" type="submit"/>  
+                  
                 </form>
             </div>
     </body>
