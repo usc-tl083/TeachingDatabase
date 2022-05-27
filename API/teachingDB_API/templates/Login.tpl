@@ -6,27 +6,8 @@
         <title>
             Teaching Database Home Page
         </title>
-
         <style>
-            
-            .button {
-                background-color: lightgray;
-                border: thick;
-                color: black;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-                width: 200px;
-            }
-
-            .container {
-                position: relative;
-            }
-    
+                
             body {
                /* background-image: img src="templates/images/pic-1.png"; */
                 background-size: cover;
@@ -63,7 +44,30 @@
                 background: transparent;
                 color: #fff;
             }
+
+            ::placeholder {
+                color: #ccc;
+            }
+
+            #hide1 {
+                display: none;
+            }
+
+            .login-btn{
+                margin:40px auto 20px;
+                width:80%;
+                display: block;
+                outline: none;
+                padding: 10px 0;
+                border: 1px solid #fff;
+                cursor: pointer;
+                background:transparent; 
+                color: #fff;
+                font-size: 16px;
+            }
+
         </style>
+        <link rel="stylesheet" href= "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css">
     </head>
 
     <!-- Title -->
@@ -78,9 +82,12 @@
                     </div>
                     <div class="input-box"> 
                         <input name="Password" type="text" placeholder="Password">
+                        <span>
+                            <i id="hide1" class="fa fa-eye-slash"></i>
+                            <i id="hide2" class="fa fa-eye" ></i>
+                        </span>
                     </div>
-                
-                    
+                    <button type="button" type="submit" class="login-btn">LOGIN</button>
                 </form>
             </div>
     </body>
