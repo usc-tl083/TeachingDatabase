@@ -45,8 +45,24 @@
 
             h1 {
                 text-align: center;
+                margin-bottom: 40px;
             }
 
+            .input-box {
+                margin:31px auto;
+                width: 80%;
+                border-bottom: 1px solid #fff;
+                padding-top: 10px;
+                padding-bottom: 5px;
+            }
+
+            .input-box input{
+                width: 90%;
+                border: none;
+                outline: none;
+                background: transparent;
+                color: #fff;
+            }
         </style>
     </head>
 
@@ -57,25 +73,14 @@
                 <h1>Login Here</h1>
 
                 <form action="/login" method="post"> 
-                    <table>
-                        <tr>
-                            <td>Username:</td>
-                            <td>
-                                <input name="username" type="text" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Password:</td>
-                            <td>
-                                <input name="password" type="password" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input value="login" type="submit" />
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="input-box"> 
+                        <input name="username" type="text" placeholder="Username">
+                    </div>
+                    <div class="input-box"> 
+                        <input name="Password" type="text" placeholder="Password">
+                    </div>
+                
+                    
                 </form>
             </div>
     </body>
