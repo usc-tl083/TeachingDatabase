@@ -13,7 +13,7 @@ def check_login(username, password):
 #does not work, someone else take a look at it got bored so i made incorrect user/pass work
 
 
-@route('/login', method="post")
+@route('/', method="post")
 def do_login():
     Username = request.forms.get('username')
     Password = request.forms.get('password')
@@ -53,7 +53,7 @@ def get_first_page():
         # Create the database query
         selectQuery = (
             # 'SELECT First_Name, Last_Name FROM staff WHERE aipubmedid = %s'
-            'SELECT StaffID, First_Name, Last_Name FROM staff WHERE Achive = FALSE')
+            'SELECT StaffID, First_Name, Last_Name FROM staff WHERE Archive = FALSE')
         # data_query is the variable that will take the place of %s above
         # data_query = (some_variabl_id,)
         # create a cursor or variable which will recieve the data returned from the database - Microsoft call this a recordset
