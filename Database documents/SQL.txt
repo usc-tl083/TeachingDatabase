@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Staff (
 
 CREATE TABLE IF NOT EXISTS Qualification (
   NameOfQualification varchar(255) NOT NULL, 
-  StaffID             int(10) NOT NULL, 
+  StaffID             int(10), 
   AQFLevel_ID         int(10) NOT NULL, 
   Subject_Area        varchar(255) NOT NULL, 
   Institution_Name    varchar(255) NOT NULL, 
@@ -171,13 +171,13 @@ insert into AQFLevels(Qualified_Degree, AQFLevel,Qualification_Level_Required_To
 
 /* INSERT RECORDS into Qualification TABLE */
 insert into Qualification(NameOfQualification,StaffID,AQFLevel_ID,Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year)
-               values('Masters of Computer Apps', 1, 5, 'Computer Applications', 'NATIONAL INSTITUTE', 'INDIA', 'Best Masters Thesis', '2008-01-01');
+               values('Masters of Computer Apps', 1, 5, 'Computer Applications', 'NATIONAL INSTITUTE', 'INDIA', 'Best Masters Thesis', '2008');
 
 insert into Qualification(NameOfQualification,StaffID,AQFLevel_ID,Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year)
-               values('Bachelor degree', 2, 1, 'Electronic Communications', 'IIIT', 'INDIA', 'Best Bachelor thesis', '2013-01-01');
+               values('Bachelor degree', 2, 1, 'Electronic Communications', 'IIIT', 'INDIA', 'Best Bachelor thesis', '2013');
 			   
 insert into Qualification(NameOfQualification,StaffID,AQFLevel_ID,Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year)
-               values('Phd In Pharmacy', 3, 6, 'CEUTHICS', 'ANDHRA UNIVERSITY', 'INDIA', 'Excellence award', '2012-01-01');
+               values('Phd In Pharmacy', 3, 6, 'CEUTHICS', 'ANDHRA UNIVERSITY', 'INDIA', 'Excellence award', '2012');
 			   
 insert into Qualification(NameOfQualification,StaffID,AQFLevel_ID,Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year)
                values('Bachelor of commerce Degree', 4, 1, 'Accounts', 'JNTU', 'INDIA', NULL, NULL);
@@ -305,5 +305,4 @@ SELECT aqflevels.AQFLevel, COUNT(qualification.AQFLevel_ID) AS 'total staff'
 FROM aqflevels 
 INNER JOIN qualification ON aqflevels.AQFLevel_ID = qualification.AQFLevel_ID
 GROUP BY aqflevels.AQFLevel;
-
 
