@@ -27,18 +27,18 @@ CREATE TABLE IF NOT EXISTS Staff (
   EmailId    varchar(128) NOT NULL UNIQUE, 
   Address    varchar(128), 
   PhoneNo    varchar(22) NOT NULL UNIQUE,
-  Archive    boolean,
+  Archive    boolean NOT NULL,
   PRIMARY KEY (StaffID));
 
 CREATE TABLE IF NOT EXISTS Qualification (
   NameOfQualification varchar(255) NOT NULL, 
-  StaffID             int(10) NOT NULL, 
+  StaffID             int(10), 
   AQFLevel_ID         int(10) NOT NULL, 
   Subject_Area        varchar(255) NOT NULL, 
   Institution_Name    varchar(255) NOT NULL, 
   Institution_Country varchar(255) NOT NULL, 
   Full_Name_Of_Award  varchar(255), 
-  Awarded_Year        date);
+  Awarded_Year        year);
 
  
 CREATE TABLE IF NOT EXISTS AQFLevels (
@@ -142,11 +142,11 @@ CREATE TABLE IF NOT EXISTS Reviewer_Notes (
   PRIMARY KEY (ID));
 
 /* INSERT RECORDS into staff Table*/
- insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo) values('Mr','Thiru','Paleru','rao.paleti@gmail.com','162 ANAND Street AMARAVATHI, ANDHRAPRADESH 522020 INDIA',9701785385);
- insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo) values('Mr','Venki','ch','venki.ch@gmail.com','121 EAT Street GUNTUR, ANDHRAPRADESH 522012 INDIA',469710653);
- insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo) values('Miss','lalitha','vadlamudi','lalli.vadlamudi@gmail.com','262 State Street VIJAYAWADA, ANDHRAPRADESH 522123 INDIA',9052385385);
- insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo) values('Mr','Alex','John','alex.john@gmail.com','111, 2 Boonah Qld CLARENDON, Queensland 4311 AUSTRALIA',458600542);
- insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo) values('Ms','Jennie','peter','jennie.peter@gmail.com','222, 26  Bathurst Road PERTHVILLE, New South Wales 2795 AUSTRALIA',987456123);
+ insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo, Archive) values('Mr','Thiru','Paleru','rao.paleti@gmail.com','162 ANAND Street AMARAVATHI, ANDHRAPRADESH 522020 INDIA',9701785385, FALSE);
+ insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo, Archive) values('Mr','Venki','ch','venki.ch@gmail.com','121 EAT Street GUNTUR, ANDHRAPRADESH 522012 INDIA',469710653, TRUE);
+ insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo, Archive) values('Miss','lalitha','vadlamudi','lalli.vadlamudi@gmail.com','262 State Street VIJAYAWADA, ANDHRAPRADESH 522123 INDIA',9052385385, FALSE);
+ insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo, Archive) values('Mr','Alex','John','alex.john@gmail.com','111, 2 Boonah Qld CLARENDON, Queensland 4311 AUSTRALIA',458600542, FALSE);
+ insert into staff(Title, First_Name, Last_Name, EmailId, Address,PhoneNo, Archive) values('Ms','Jennie','peter','jennie.peter@gmail.com','222, 26  Bathurst Road PERTHVILLE, New South Wales 2795 AUSTRALIA',987456123, FALSE);
  
 			 
 
@@ -171,13 +171,13 @@ insert into AQFLevels(Qualified_Degree, AQFLevel,Qualification_Level_Required_To
 
 /* INSERT RECORDS into Qualification TABLE */
 insert into Qualification(NameOfQualification,StaffID,AQFLevel_ID,Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year)
-               values('Masters of Computer Apps', 1, 5, 'Computer Applications', 'NATIONAL INSTITUTE', 'INDIA', 'Best Masters Thesis', '2008-01-01');
+               values('Masters of Computer Apps', 1, 5, 'Computer Applications', 'NATIONAL INSTITUTE', 'INDIA', 'Best Masters Thesis', '2008');
 
 insert into Qualification(NameOfQualification,StaffID,AQFLevel_ID,Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year)
-               values('Bachelor degree', 2, 1, 'Electronic Communications', 'IIIT', 'INDIA', 'Best Bachelor thesis', '2013-01-01');
+               values('Bachelor degree', 2, 1, 'Electronic Communications', 'IIIT', 'INDIA', 'Best Bachelor thesis', '2013');
 			   
 insert into Qualification(NameOfQualification,StaffID,AQFLevel_ID,Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year)
-               values('Phd In Pharmacy', 3, 6, 'CEUTHICS', 'ANDHRA UNIVERSITY', 'INDIA', 'Excellence award', '2012-01-01');
+               values('Phd In Pharmacy', 3, 6, 'CEUTHICS', 'ANDHRA UNIVERSITY', 'INDIA', 'Excellence award', '2012');
 			   
 insert into Qualification(NameOfQualification,StaffID,AQFLevel_ID,Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year)
                values('Bachelor of commerce Degree', 4, 1, 'Accounts', 'JNTU', 'INDIA', NULL, NULL);
