@@ -1,7 +1,0 @@
-Functionaltiy of project
-
-1)Creating an assesable data base to manage sort and allocate teachers for courses.
-2)The database that can be used to manage and store the data of the candidates and teachers.
-3)software requirement specification stating the requirements of the system.
-4)software design specification with design of the database and its details.
-
