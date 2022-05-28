@@ -3,7 +3,7 @@ from bottle import html_escape, route, run, request, get, post, response, templa
 # from xml.dom import minidom, Node
 from classDb import DatabaseConnect as dbcon
 
-
+#Login Home Page
 @route('/', method="get")
 def login():
  return template('./templates/Login')
@@ -12,8 +12,8 @@ def check_login(username, password):
  pass
 #does not work, someone else take a look at it got bored so i made incorrect user/pass work
 
-
-@route('/login', method="post")
+#Log In Function/Connection Route
+@route('/admin', method="post")
 def do_login():
     Username = request.forms.get('username')
     Password = request.forms.get('password')
@@ -22,7 +22,7 @@ def do_login():
     else:
         return template('./templates/Admin_Page')
 
-@route('/admin_portal/aqfrecords')
+@route('/admin_page/aqfrecords')
 def do_aqfrecords():
      with dbcon() as db:
         conx = db.opendb()
