@@ -3,7 +3,7 @@ from bottle import html_escape, route, run, request, get, post, response, templa
 # from xml.dom import minidom, Node
 from classDb import DatabaseConnect as dbcon
 
-#Login Home Page
+
 @route('/', method="get")
 def login():
  return template('./templates/Login')
@@ -12,8 +12,8 @@ def check_login(username, password):
  pass
 #does not work, someone else take a look at it got bored so i made incorrect user/pass work
 
-#Log In Function/Connection Route
-@route('/admin', method="post")
+
+@route('/login', method="post")
 def do_login():
     Username = request.forms.get('username')
     Password = request.forms.get('password')
@@ -22,7 +22,13 @@ def do_login():
     else:
         return template('./templates/Admin_Page')
 
-@route('/Admin_Page/aqfrecords')
+
+
+@route('/home')
+def home():
+    return template ('./templates/Admin_Page')
+
+@route('/admin_portal/aqfrecords')
 def do_aqfrecords():
      with dbcon() as db:
         conx = db.opendb()
@@ -36,8 +42,7 @@ def do_aqfrecords():
         dcurs.close()
      return template('./templates/aqfrecords', aqf_list=aqf_data)
 
-def new_func():
-    return total
+
 
 
 @route('/staff')
@@ -45,14 +50,12 @@ def get_first_page():
     with dbcon() as db:
         # create a handle to the database connection that you open
         conx = db.opendb()
-
         # Create the database query
         selectQuery = (
             # 'SELECT First_Name, Last_Name FROM staff WHERE aipubmedid = %s'
-            'SELECT StaffID, First_Name, Last_Name FROM staff')
+            'SELECT StaffID, First_Name, Last_Name FROM staff WHERE Achive = FALSE')
         # data_query is the variable that will take the place of %s above
         # data_query = (some_variabl_id,)
-
         # create a cursor or variable which will recieve the data returned from the database - Microsoft call this a recordset
         dcurs = conx.cursor(buffered=True)
         # execute the query and query variable from within the cursor object
@@ -139,7 +142,7 @@ def create_staff():
 
             
             StaffInsert = (
-                "INSERT INTO staff(Title, First_Name, Last_Name, EmailID, Address, PhoneNo) VALUES (%s, %s, %s, %s, %s, %s)" 
+                "INSERT INTO staff(Title, First_Name, Last_Name, EmailID, Address, PhoneNo, Archive) VALUES (%s, %s, %s, %s, %s, %s, FALSE)" 
             )
             QualInsert = (
                 "INSERT INTO Qualification(NameOfQualification, AQFLevel_ID, Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year) VALUES (%s, %s, %s, %s, %s, %s, %s) "
@@ -192,6 +195,29 @@ def edit_staff(StaffID):
         dcurs.close()
   
         return template('./templates/viewstaff.tpl', staff_list=staffdetails)
+
+@route('/Archive')
+def get_first_page():
+    with dbcon() as db:
+    
+        conx = db.opendb()
+        
+        selectQuery = (
+           
+            'SELECT StaffID, First_Name, Last_Name FROM staff WHERE Archive = TRUE')
+
+        dcurs = conx.cursor(buffered=True)
+
+        dcurs.execute(selectQuery)
+      
+        if dcurs.rowcount > 0:
+            staff_data = dcurs.fetchall()
+       
+
+
+        dcurs.close()
+    return template('./templates/viewstaff.tpl', staff_list=staff_data)
+
         
 
    

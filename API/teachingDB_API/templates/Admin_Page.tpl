@@ -49,7 +49,7 @@
     </head>
 
 <!-- Title -->
-<title>Admin Page</title>
+<title>Admin Portal</title>
 
 <body>
 <center><img src="https://i.imgur.com/GrJSEiU.png"/></center>
@@ -62,7 +62,8 @@
 
 <h3>View Staff Details</h3>
 <a href="/staff"><button type="button" id="viewStaff" class="button">Staff</button></a><br><br>
-<a href="staffDelete.html"><button type="button" class="button">Delete Staff</button></a><br><br><br><br>
+<a href="/create_staff"><button type="button" class="button">Create Staff</button></a><br><br><br><br>
+<a href="/Archive"><button type="button" class="button">Archive</button></a><br><br><br><br>
 
 <h3>View AQF</h3>
 <a href="/Admin_Page/aqfrecords"><button type="button" id="viewAQF" class="button">View AQF Levels</button></a><br><br><br><br>
