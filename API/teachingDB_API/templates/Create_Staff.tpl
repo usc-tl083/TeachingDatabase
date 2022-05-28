@@ -59,7 +59,7 @@
 
 
   <input type="submit" name="save" value="save">
-  <a href="/admin_portal"><button type="button" class="button">BACK</button></a>
+  <a href="/Admin_Page"><button type="button" class="button">BACK</button></a>
   
 </form>
 </div>

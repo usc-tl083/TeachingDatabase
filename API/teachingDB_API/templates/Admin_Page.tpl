@@ -65,7 +65,7 @@
 <a href="staffDelete.html"><button type="button" class="button">Delete Staff</button></a><br><br><br><br>
 
 <h3>View AQF</h3>
-<a href="/admin_portal/aqfrecords"><button type="button" id="viewAQF" class="button">View AQF Levels</button></a><br><br><br><br>
+<a href="/Admin_Page/aqfrecords"><button type="button" id="viewAQF" class="button">View AQF Levels</button></a><br><br><br><br>
 
 <h3>Enter or View Approval</h3>
 <a href="adminApp.html"><button type="button" id="viewAppButton" class="button">Enter Approval</button></a><br><br>

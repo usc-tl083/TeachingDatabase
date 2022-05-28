@@ -22,7 +22,7 @@ def do_login():
     else:
         return template('./templates/Admin_Page')
 
-@route('/admin_page/aqfrecords')
+@route('/Admin_Page/aqfrecords')
 def do_aqfrecords():
      with dbcon() as db:
         conx = db.opendb()
@@ -45,12 +45,14 @@ def get_first_page():
     with dbcon() as db:
         # create a handle to the database connection that you open
         conx = db.opendb()
+
         # Create the database query
         selectQuery = (
             # 'SELECT First_Name, Last_Name FROM staff WHERE aipubmedid = %s'
             'SELECT StaffID, First_Name, Last_Name FROM staff')
         # data_query is the variable that will take the place of %s above
         # data_query = (some_variabl_id,)
+
         # create a cursor or variable which will recieve the data returned from the database - Microsoft call this a recordset
         dcurs = conx.cursor(buffered=True)
         # execute the query and query variable from within the cursor object
