@@ -4,7 +4,7 @@
     <!-- Page Style-->
     <head>
         <title>
-            Teaching Database Home Page
+            Teaching Database Admin Login Page
         </title>
         <style>
                 
@@ -126,7 +126,7 @@
                         <polygon style="fill:#0088ce" points="0 3.2 0 72.08 26.51 64.47 1.54 45.73 33.1 45.23 23.43 15.16 47.75 32.62 59.06 3.84 59.06 3.2 0 3.2"></polygon>
                     </svg>
                 </a>
-                <a href="/admin_page"><button type="button" class="button">Admin Login</button></a>
+                <a href="/Staff_Page"><button type="button" class="button">Staff Login</button></a>
             </div>    
         </header>
         
