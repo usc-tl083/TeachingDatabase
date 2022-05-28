@@ -8,7 +8,7 @@ class DatabaseConnect:
         self.__databaseName = database
         self.__config = {
             'user': 'root',
-            'password': 'password',
+            'password': '21ecoeco',
             'host': 'localhost',
             'database': self.__databaseName,
             'raise_on_warnings': True, }

@@ -1,4 +1,6 @@
 from re import TEMPLATE
+
+from mysql.connector.constants import DEFAULT_CONFIGURATION
 from bottle import html_escape, route, run, request, get, post, response, template, HTTPResponse
 # from xml.dom import minidom, Node
 from classDb import DatabaseConnect as dbcon
@@ -167,44 +169,14 @@ def create_staff():
             
         return template('./templates/create_staff.tpl')
 
-@route('/staff/<StaffID>', method='get')
-def edit_staff(StaffID):
-    with dbcon() as db:
-        
-        
-        conx = db.opendb()
-        
-
-        selectQuery = (
-            "SELECT StaffID, First_Name, Last_Name FROM staff")
-
-        if StaffID in selectQuery:
-            print(selectQuery[StaffID])
-
-            
-            
-        dcurs = conx.cursor(buffered=True)
-
-        dcurs.execute(selectQuery)
-
-        if dcurs.rowcount > 0:
-            staffdetails = dcurs.fetchall()
-
-
-            
-        dcurs.close()
-  
-        return template('./templates/viewstaff.tpl', staff_list=staffdetails)
 
 @route('/Archive')
-def get_first_page():
-    with dbcon() as db:
+def get_Archive():
+     with dbcon() as db:
     
         conx = db.opendb()
         
-        selectQuery = (
-           
-            'SELECT StaffID, First_Name, Last_Name FROM staff WHERE Archive = TRUE')
+        selectQuery = ('SELECT StaffID, First_Name, Last_Name FROM staff WHERE Archive = TRUE')
 
         dcurs = conx.cursor(buffered=True)
 
@@ -212,13 +184,55 @@ def get_first_page():
       
         if dcurs.rowcount > 0:
             staff_data = dcurs.fetchall()
-       
-
-
+             
+           
         dcurs.close()
-    return template('./templates/viewstaff.tpl', staff_list=staff_data)
+     return template('./templates/viewstaff.tpl', staff_list=staff_data)
 
+#i just can't get it to work need help
+@route('/staff/StaffID<StaffID:int>')
+def show_staff(StaffID):
+     with dbcon() as db:
         
+    
+        conx = db.opendb()
+        
+        selectQuery = ("SELECT StaffID, First_Name, Last_Name FROM staff WHERE StaffID LIKE ?")
+
+
+        dcurs = conx.cursor(buffered=True)
+
+        dcurs.execute(selectQuery, (StaffID,))
+
+        result = dcurs.fetchall()
+        
+        conx.commit()
+        dcurs.close()
+        
+        return 'StaffID, First_Name, Last_Name: %s' % result[0]
+
+#I haven't started help, this is just formatting from bottle manual
+@route('/edit/<no:int>', method='GET')
+def edit_item(no):
+    with dbcon() as db:
+        if request.GET.save:
+            edit = request.GET.Archive.strip()
+            status = request.GET.status.strip()
+            if status == 'open':
+                status = 1
+            else:
+                status = 0
+                conx = db.opendb()
+                dcurs = conx.cursor()
+                dcurs.execute("UPDATE staff SET task = ?, status = ? WHERE StaffID LIKE ?", (edit, status, StaffID))
+                conx.commit()
+                return '<p>The item number %s was successfully updated</p>' % no
+        else:
+            conx = db.opendb()
+            dcurs = conx.cursor()
+            c.execute("SELECT task FROM todo WHERE id LIKE ?", (str(StaffID)))
+            data = dcurs.fetchone()
+            return template('edit_task', old=cur_data, no=no)
 
    
 run(host='localhost', port=8080, debug=True)
