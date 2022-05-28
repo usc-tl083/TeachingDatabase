@@ -300,9 +300,3 @@ INNER JOIN
  Relevant_Employment_Experience
  ON Relevant_Employment_Experience.STAFFID = staff.STAFFID;
  
- 
-SELECT aqflevels.AQFLevel, COUNT(qualification.AQFLevel_ID) AS 'total staff'
-FROM aqflevels 
-INNER JOIN qualification ON aqflevels.AQFLevel_ID = qualification.AQFLevel_ID
-GROUP BY aqflevels.AQFLevel;
-
