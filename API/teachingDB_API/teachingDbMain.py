@@ -178,6 +178,8 @@ def get_Archive():
         
         selectQuery = ('SELECT StaffID, First_Name, Last_Name FROM staff WHERE Archive = TRUE')
 
+    
+
         dcurs = conx.cursor(buffered=True)
 
         dcurs.execute(selectQuery)
@@ -187,7 +189,7 @@ def get_Archive():
              
            
         dcurs.close()
-     return template('./templates/viewstaff.tpl', staff_list=staff_data)
+     return template('./templates/staff.tpl', staff_list=staff_data)
 
 #i just can't get it to work need help
 @route('/staff/<StaffID:int>')
@@ -198,7 +200,8 @@ def show_staff(StaffID):
         conx = db.opendb()       
 
         # Grabbing the specific User Query
-        selectQuery = ("SELECT First_Name, Last_Name FROM staff WHERE StaffID = %s")
+        selectQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE staff.StaffID=%s")
+        
 
         # Bringing StaffID into a string to bring into our Query
         StaffNumber = (StaffID,)
@@ -217,28 +220,6 @@ def show_staff(StaffID):
         
      return template('./templates/viewstaff.tpl', staff_list=result)
 
-#I haven't started help, this is just formatting from bottle manual
-@route('/edit/<no:int>', method='GET')
-def edit_item(no):
-    with dbcon() as db:
-        if request.GET.save:
-            edit = request.GET.Archive.strip()
-            status = request.GET.status.strip()
-            if status == 'open':
-                status = 1
-            else:
-                status = 0
-                conx = db.opendb()
-                dcurs = conx.cursor()
-                dcurs.execute("UPDATE staff SET task = ?, status = ? WHERE StaffID LIKE ?", (edit, status, StaffID))
-                conx.commit()
-                return '<p>The item number %s was successfully updated</p>' % no
-        else:
-            conx = db.opendb()
-            dcurs = conx.cursor()
-            c.execute("SELECT task FROM todo WHERE id LIKE ?", (str(StaffID)))
-            data = dcurs.fetchone()
-            return template('edit_task', old=cur_data, no=no)
 
    
 run(host='localhost', port=8080, debug=True)
