@@ -224,20 +224,20 @@ def show_staff(StaffID):
 def edit_staff(StaffID):
     with dbcon() as db:
         conx = db.opendb()
-        
+        staffurl = StaffID
         if request.POST.get('save','').strip():
             SFN = request.POST.get('First_Name')
             SLN = request.POST.get('Last_Name')
             SA = request.POST.get('Address')
             SPN = request.POST.get('Phoneno')
             
-            Update = ('Update staff set First_Name=%s,Last_Name=%s, Address=%s, Phoneno=%s WHERE staff.StaffID=%s')
+            Update = ('Update set First_Name=%s,Last_Name=%s, Address=%s, Phoneno=%s WHERE staff.StaffID=%s')
             
             selectQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE staff.StaffID=%s")
 
             StaffNumber = (StaffID,)
 
-            Staff_Fields = (SFN,SLN,SA,SPN,StaffNumber)
+            Staff_Fields = (SFN,SLN,SA,SPN)
             
             dcurs = conx.cursor(buffered=True)
 
@@ -258,7 +258,7 @@ def edit_staff(StaffID):
             dcurs.execute(selectQuery, StaffNumber)
             rec = dcurs.fetchall()
             dcurs.close()
-            return template('./templates/edit.tpl', StaffNumber=StaffNumber, staff_list=rec)
+            return template('./templates/edit.tpl', staffurl=staffurl, staff_list=rec)
 
 
 

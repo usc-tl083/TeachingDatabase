@@ -3,7 +3,7 @@
 
 
 <div width="250px">
-<form action="edit<StaffID:int>" method="POST">
+<form action="edit{{staffurl}}" method="POST"
 <body>
 <centre>
     <table>
