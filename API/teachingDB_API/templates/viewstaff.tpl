@@ -33,7 +33,7 @@
 </body>
 
 <a href="/staff"><button type="button" class="button">Back</button></a>    
-<a><button type="button" onClick="location.href='/edit{{staffdetails[0]}}'">Edit</button></a>
+<a><button type="button" onClick="location.href='/staff/edit{{staffdetails[0]}}'">Edit</button></a>
 
 
 

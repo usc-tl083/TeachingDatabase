@@ -220,6 +220,47 @@ def show_staff(StaffID):
         
      return template('./templates/viewstaff.tpl', staff_list=result)
 
+@route('/staff/edit<StaffID:int>', method=['GET', 'POST'])
+def edit_staff(StaffID):
+    with dbcon() as db:
+        conx = db.opendb()
+        
+        if request.POST.get('save','').strip():
+            SFN = request.POST.get('First_Name')
+            SLN = request.POST.get('Last_Name')
+            SA = request.POST.get('Address')
+            SPN = request.POST.get('Phoneno')
+            
+            Update = ('Update staff set First_Name=%s,Last_Name=%s, Address=%s, Phoneno=%s WHERE staff.StaffID=%s')
+            
+            selectQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE staff.StaffID=%s")
+
+            StaffNumber = (StaffID,)
+
+            Staff_Fields = (SFN,SLN,SA,SPN,StaffNumber)
+            
+            dcurs = conx.cursor(buffered=True)
+
+            dcurs.execute(Update, Staff_Fields)
+
+            conx.commit()
+            
+            rec =  dcurs.execute(selectQuery, StaffNumber)
+            dcurs.close()
+
+            return template('./templates/viewstaff.tpl', staff_list=rec)
+        else:
+            selectQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE staff.StaffID=%s")
+
+            StaffNumber = (StaffID,)
+
+            dcurs = conx.cursor(buffered=True)
+            dcurs.execute(selectQuery, StaffNumber)
+            rec = dcurs.fetchall()
+            dcurs.close()
+            return template('./templates/edit.tpl', StaffNumber=StaffNumber, staff_list=rec)
+
+
 
    
 run(host='localhost', port=8080, debug=True)
