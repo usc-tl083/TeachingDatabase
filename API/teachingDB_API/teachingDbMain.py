@@ -8,7 +8,7 @@ from classDb import DatabaseConnect as dbcon
 
 @route('/', method="get")
 def login():
- return template('./templates/Login')
+ return template('./templates/Admin_Login')
 
 def check_login(username, password):
  pass
@@ -190,26 +190,32 @@ def get_Archive():
      return template('./templates/viewstaff.tpl', staff_list=staff_data)
 
 #i just can't get it to work need help
-@route('/staff/StaffID<StaffID:int>')
+@route('/staff/StaffID%s', '<StaffID:int>')
 def show_staff(StaffID):
      with dbcon() as db:
         
     
-        conx = db.opendb()
-        
-        selectQuery = ("SELECT StaffID, First_Name, Last_Name FROM staff WHERE StaffID LIKE ?")
+        conx = db.opendb()       
 
+        # Grabbing the specific User Query
+        selectQuery = ("SELECT StaffID, First_Name, Last_Name FROM staff WHERE StaffID = %s")
+
+        # Bringing StaffID into a string to bring into our Query
+        StaffNumber = (StaffID,)
 
         dcurs = conx.cursor(buffered=True)
 
-        dcurs.execute(selectQuery, (StaffID,))
+        #Query being called and selecting StaffID into the Query (Running it once to open that staff only)
+        dcurs.execute(selectQuery, StaffNumber)
 
-        result = dcurs.fetchall()
+        #Bringing the Fetched Results into a variable and printing it
+        result = dcurs.fetchone()
+        print (result)
         
         conx.commit()
         dcurs.close()
         
-        return 'StaffID, First_Name, Last_Name: %s' % result[0]
+     return template('base', result)
 
 #I haven't started help, this is just formatting from bottle manual
 @route('/edit/<no:int>', method='GET')
