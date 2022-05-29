@@ -220,24 +220,23 @@ def show_staff(StaffID):
         
      return template('./templates/viewstaff.tpl', staff_list=result)
 
-@route('/staff/edit<StaffID:int>', method=['GET', 'POST'])
+@route('/staff/edit<StaffID:int>', method='GET')
 def edit_staff(StaffID):
     with dbcon() as db:
         conx = db.opendb()
         staffurl = StaffID
-        if request.POST.get('save','').strip():
-            SFN = request.POST.get('First_Name')
-            SLN = request.POST.get('Last_Name')
-            SA = request.POST.get('Address')
-            SPN = request.POST.get('Phoneno')
-            
-            Update = ('Update set First_Name=%s,Last_Name=%s, Address=%s, Phoneno=%s WHERE staff.StaffID=%s')
-            
-            selectQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE staff.StaffID=%s")
-
+        if request.GET.save:
+            SFN = request.query.First_Name
+            SLN = request.query.Last_Name
+            SA = request.query.Address
+            SPN = request.query.PhoneNo
+            SID = StaffID
             StaffNumber = (StaffID,)
-
-            Staff_Fields = (SFN,SLN,SA,SPN)
+            
+            Update = ("UPDATE Staff SET First_Name = %s, Last_Name = %s, Address = %s, PhoneNO = %s WHERE staff.StaffID = %s")
+            Staff_Fields = (SFN, SLN, SA, SPN, SID)
+            
+            selectQuery = ("Select StaffID, First_Name, Last_Name, Address, PhoneNo FROM Staff WHERE staff.StaffID=%s")
             
             dcurs = conx.cursor(buffered=True)
 
