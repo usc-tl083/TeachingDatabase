@@ -1,7 +1,7 @@
 from re import TEMPLATE
 
 from mysql.connector.constants import DEFAULT_CONFIGURATION
-from bottle import html_escape, route, run, request, get, post, response, template, HTTPResponse
+from bottle import html_escape, redirect, route, run, request, get, post, response, template, HTTPResponse
 # from xml.dom import minidom, Node
 from classDb import DatabaseConnect as dbcon
 
@@ -191,7 +191,7 @@ def get_Archive():
         dcurs.close()
      return template('./templates/staff.tpl', staff_list=staff_data)
 
-#i just can't get it to work need help
+#Make it so its selecting from multiple tables
 @route('/staff/<StaffID:int>')
 def show_staff(StaffID):
      with dbcon() as db:
@@ -220,44 +220,48 @@ def show_staff(StaffID):
         
      return template('./templates/viewstaff.tpl', staff_list=result)
 
-@route('/staff/edit<StaffID:int>', method='GET')
+@route('/staff/edit/<StaffID:int>', method=['GET', 'POST'])
 def edit_staff(StaffID):
     with dbcon() as db:
         conx = db.opendb()
-        staffurl = StaffID
-        if request.GET.save:
-            SFN = request.query.First_Name
-            SLN = request.query.Last_Name
-            SA = request.query.Address
-            SPN = request.query.PhoneNo
-            SID = StaffID
+        if request.POST.get('save','').strip():
+            SFN = request.POST.get('First_Name')
+            SLN = request.POST.get('Last_Name')
+            SA = request.POST.get('Address')
+            SPN = request.POST.get('PhoneNo')
+            SID = request.POST.get('StaffID')
+            
             StaffNumber = (StaffID,)
             
-            Update = ("UPDATE Staff SET First_Name = %s, Last_Name = %s, Address = %s, PhoneNO = %s WHERE staff.StaffID = %s")
-            Staff_Fields = (SFN, SLN, SA, SPN, SID)
+            Update = ("UPDATE Staff SET First_Name = %s, Last_Name = %s, Address = %s, PhoneNo = %s WHERE StaffID = %s")
+            Staff_Fields = (SFN, SLN, SA, SPN, StaffID)
             
-            selectQuery = ("Select StaffID, First_Name, Last_Name, Address, PhoneNo FROM Staff WHERE staff.StaffID=%s")
+            selectQuery = ("Select StaffID, First_Name, Last_Name, Address, PhoneNo FROM Staff")
             
             dcurs = conx.cursor(buffered=True)
 
             dcurs.execute(Update, Staff_Fields)
-
             conx.commit()
-            
-            rec =  dcurs.execute(selectQuery, StaffNumber)
+              
             dcurs.close()
-
-            return template('./templates/viewstaff.tpl', staff_list=rec)
+            redirect('/staff')
+                    
         else:
-            selectQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE staff.StaffID=%s")
+
+            selectQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE StaffID=%s")
 
             StaffNumber = (StaffID,)
 
             dcurs = conx.cursor(buffered=True)
             dcurs.execute(selectQuery, StaffNumber)
             rec = dcurs.fetchall()
+            conx.commit()
             dcurs.close()
-            return template('./templates/edit.tpl', staffurl=staffurl, staff_list=rec)
+            return template('./templates/edit.tpl', StaffID=StaffID, staff_list=rec)
+
+
+
+        
 
 
 

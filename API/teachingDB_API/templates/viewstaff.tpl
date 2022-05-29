@@ -14,7 +14,6 @@
             <th>Last Name</th>
             <th>Address</th>
             <th>Phoneno</th>
-            <th></th>
         </tr>
         % for staffdetails in staff_list:
         <tr>
@@ -33,7 +32,7 @@
 </body>
 
 <a href="/staff"><button type="button" class="button">Back</button></a>    
-<a><button type="button" onClick="location.href='/staff/edit{{staffdetails[0]}}'">Edit</button></a>
+<a><button type="button" onClick="location.href='/staff/edit/{{staffdetails[0]}}'">Edit</button></a>
 
 
 
