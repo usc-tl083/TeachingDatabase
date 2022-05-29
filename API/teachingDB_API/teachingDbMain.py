@@ -190,7 +190,7 @@ def get_Archive():
      return template('./templates/viewstaff.tpl', staff_list=staff_data)
 
 #i just can't get it to work need help
-@route('/staff/StaffID%s', '<StaffID:int>')
+@route('/staff/<StaffID:int>')
 def show_staff(StaffID):
      with dbcon() as db:
         
@@ -198,7 +198,7 @@ def show_staff(StaffID):
         conx = db.opendb()       
 
         # Grabbing the specific User Query
-        selectQuery = ("SELECT StaffID, First_Name, Last_Name FROM staff WHERE StaffID = %s")
+        selectQuery = ("SELECT First_Name, Last_Name FROM staff WHERE StaffID = %s")
 
         # Bringing StaffID into a string to bring into our Query
         StaffNumber = (StaffID,)
@@ -209,13 +209,13 @@ def show_staff(StaffID):
         dcurs.execute(selectQuery, StaffNumber)
 
         #Bringing the Fetched Results into a variable and printing it
-        result = dcurs.fetchone()
-        print (result)
+        result = dcurs.fetchall()
+        
         
         conx.commit()
         dcurs.close()
         
-     return template('base', result)
+     return template('./templates/viewstaff.tpl', staff_list=result)
 
 #I haven't started help, this is just formatting from bottle manual
 @route('/edit/<no:int>', method='GET')
