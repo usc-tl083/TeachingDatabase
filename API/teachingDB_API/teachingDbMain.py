@@ -14,7 +14,6 @@ def check_login(username, password):
  pass
 #does not work, someone else take a look at it got bored so i made incorrect user/pass work
 
-
 @route('/', method="post")
 def do_login():
     Username = request.forms.get('username')
@@ -24,13 +23,11 @@ def do_login():
     else:
         return template('./templates/Admin_Page')
 
-
-
 @route('/home')
 def home():
     return template ('./templates/Admin_Page')
 
-@route('/admin_portal/aqfrecords')
+@route('/aqfrecords')
 def do_aqfrecords():
      with dbcon() as db:
         conx = db.opendb()
@@ -42,10 +39,7 @@ def do_aqfrecords():
         if dcurs.rowcount > 0:
             aqf_data = dcurs.fetchall()
         dcurs.close()
-     return template('./templates/aqfrecords', aqf_list=aqf_data)
-
-
-
+     return template('./templates/aqfrecords', aqf_list=aqf_data) 
 
 @route('/staff')
 def get_first_page():
@@ -76,7 +70,6 @@ def get_first_page():
         # close the cursor to finalise the query - this does not close the connection to the database
         dcurs.close()
     return template('./templates/staff.tpl', staff_list=staff_data)
-
 
 @route('/staff/getstaff')
 def get_staff():
@@ -117,7 +110,6 @@ def get_staff():
 # This saves the xml file without modification
 # @route('/saveStaff')
 # def save_staff():
-
 
 @route('/create_staff', method='GET')
 def create_staff():
@@ -197,28 +189,26 @@ def show_staff(StaffID):
      with dbcon() as db:
         
     
-        conx = db.opendb()       
-
-        # Grabbing the specific User Query
-        selectQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE staff.StaffID=%s")
+        conx = db.opendb()     
         
-
-        # Bringing StaffID into a string to bring into our Query
+        # Variable for selecting the Staff member
         StaffNumber = (StaffID,)
 
+        # Grabbing Staff Table
+        staffQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE staff.StaffID=%s")
+        
         dcurs = conx.cursor(buffered=True)
 
-        #Query being called and selecting StaffID into the Query (Running it once to open that staff only)
-        dcurs.execute(selectQuery, StaffNumber)
-
-        #Bringing the Fetched Results into a variable and printing it
-        result = dcurs.fetchall()
+        # Query for  staff tables
+        dcurs.execute(staffQuery, StaffNumber)
         
+        #Bringing the Fetched Results into a variable and printing it
+        staff = dcurs.fetchall()                  
         
         conx.commit()
         dcurs.close()
         
-     return template('./templates/viewstaff.tpl', staff_list=result)
+     return template('./templates/viewstaff.tpl', staff_results=staff)
 
 @route('/staff/edit/<StaffID:int>', method=['GET', 'POST'])
 def edit_staff(StaffID):
