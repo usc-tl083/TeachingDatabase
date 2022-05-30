@@ -7,23 +7,22 @@
         <body>
             <centre>
                 <table>
-
-                    <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Address</th>
-                        <th>Phoneno</th>
-                        <th></th>
-                    </tr>
                     % for staffdetails in staff_list:
                     <tr>
-                        <th><input type="text" size="20" maxlength="100" name='First_Name'></th>
-                        <th><input type="text" size="20" maxlength="100" name='Last_Name'></th>
-                        <th><input type="text" size="20" maxlength="100" name='Address'></th>
-                        <th><input type="text" size="20" maxlength="100" name='PhoneNo'></th>
+                        <th>{{staffdetails[0]}}</th>
+                        <th>{{staffdetails[1]}}</th>
+                        <th>{{staffdetails[2]}}</th>
+                        <th>{{staffdetails[3]}}</th>
+                        <th></th>
                     </tr>
                     % end
+                    <tr>
+                        <th><input type="text" size="20" maxlength="100" name='First_Name' placeholder='First name'></th>
+                        <th><input type="text" size="20" maxlength="100" name='Last_Name' placeholder='Last name'></th>
+                        <th><input type="text" size="20" maxlength="100" name='Address' placeholder='Address'></th>
+                        <th><input type="text" size="20" maxlength="100" name='PhoneNo' placeholder='Phone number' ></th>
+                    </tr>
+                   
                 </table>	
              </centre>
         </body>

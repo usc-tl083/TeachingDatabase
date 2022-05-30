@@ -3,7 +3,7 @@
 
 
 <div width="250px">
-    <form action="<StaffID:int>" method="get">
+    <form action="{{StaffID}}" method="POST">
         <body>
             <centre>
                 <table>
@@ -15,21 +15,20 @@
                         <th>Address</th>
                         <th>Phoneno</th>
                     </tr>
-                    % for staffdetails in staff_results:
+                    % for staffdetails in staff_list:
                     <tr>
                         <td>{{staffdetails[0]}}</td>
                         <td>{{staffdetails[1]}}</td>
                         <td>{{staffdetails[2]}}</td>
                         <td>{{staffdetails[3]}}</td>
-                        <td>{{staffdetails[4]}}</td>
+                        <td>{{staffdetails[3]}}</td>
                     </tr>
                     % end
                  </table>	
             </centre>
         </body>
   
-        <a><button type="button" onClick="location.href='/staff/edit/{{staffdetails[0]}}'">Edit</button></a>
-        <a><button type="button" onClick="location.href='/staff/archive/{{staffdetails[0]}}'">archive</button></a>
+        <input type="submit" name="save" value="Activate">
         <a onclick="goBack()"><button type="button" class="button">Back</button></a>
         <script>
             function goBack() {
