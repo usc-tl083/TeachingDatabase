@@ -56,6 +56,11 @@
             </centre>
         </body>
         <input type="submit" name="save" value="save">
-        <a href="/Admin_Page"><button type="button" class="button">BACK</button></a> 
-</form>
+        <a onclick="goBack()"><button type="button" class="button">Back</button></a>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </form>
 </div>

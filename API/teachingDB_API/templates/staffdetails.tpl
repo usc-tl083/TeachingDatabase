@@ -10,9 +10,9 @@
 
 
 
-<button onClick="goBack()"></button<button type="button" onClick="location.href='/edit{{sd}}'">Edit</button>
+<a onclick="goBack()"><button type="button" class="button">Back</button></a>
 <script>
-function goBack() {
-	window.history.back()
-}
+    function goBack() {
+        window.history.back();
+    }
 </script>

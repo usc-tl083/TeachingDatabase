@@ -126,7 +126,6 @@
                         <polygon style="fill:#0088ce" points="0 3.2 0 72.08 26.51 64.47 1.54 45.73 33.1 45.23 23.43 15.16 47.75 32.62 59.06 3.84 59.06 3.2 0 3.2"></polygon>
                     </svg>
                 </a>
-                <a href="/home"><button type="button" class="button">Staff Login</button></a>
             </div>    
         </header>
         
@@ -136,37 +135,40 @@
 
                 <!-- If successful will take user to Admin Form -->
                 <form action="/" method="post"> 
-
+                    <!-- Username Input -->
                     <div class="input-box"> 
-                        <i class="fa-solid fa-user"></i>
-                        <input name="username" type="text" placeholder="Username">
+                        <i class="fa-solid fa-user"></i> <!-- User Icon -->
+                        <input name="username" type="text" placeholder="Username"> 
                     </div>
+                    <!-- Password Input -->
                     <div class="input-box"> 
-                        <i class="fa-solid fa-key"></i>
+                        <i class="fa-solid fa-key"></i> <!-- Key Icon -->
                         <input name="Password" type="password" placeholder="Password" id="myInput">
-                        <span class="eye" onclick="eyePassword()">
+                        <!-- Hidden Eye Icon (Shown/Hidden Password) -->
+                        <span class="eye" onclick="eyePassword()"> 
                             <i id="hide1" class="fa fa-eye"></i>
                             <i id="hide2" class="fa fa-eye-slash" ></i>
                         </span>
                     </div>
-                    
-                    <input value="LOGIN" type="submit"/>  
-                  
+                    <!-- Confirm Login -->
+                    <input value="LOGIN" type="submit"/>                    
                 </form>
             </div>
 
             <script>
+                // For hiding and showing the password
                 function eyePassword(){
                     var x = document.getElementById("myInput");
                     var y = document.getElementById("hide1");
                     var z = document.getElementById("hide2");
 
+                    // Will Show password if Clicked
                     if(x.type === 'password'){
                         x.type = "text";
                         y.style.display = "block";
                         z.style.display = "none";
                     }
-                    else{
+                    else{ //Will hide Password if Clicked
                         x.type = "password";
                         y.style.display = "none";
                         z.style.display = "block";
