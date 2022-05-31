@@ -7,9 +7,9 @@ class DatabaseConnect:
     def __init__(self, database='teaching_database'):
         self.__databaseName = database
         self.__config = {
-            'user': 'ict342-TeachingDb_Team',
-            'password': 'mysql-TeachingDb_Team',
-            'host': 'wsp-bict11',
+            'user': 'root',
+            'password': 'password',
+            'host': 'localhost',
             'database': self.__databaseName,
             'raise_on_warnings': True, }
         self.__cnx = ''
