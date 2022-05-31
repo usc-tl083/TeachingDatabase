@@ -1,6 +1,23 @@
 <Title>User infomationr:</Title>
 %# Send a GET request with the first and last names to the create_user
 
+<style>
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+
+</style>
 
 <div width="250px">
     <center>
