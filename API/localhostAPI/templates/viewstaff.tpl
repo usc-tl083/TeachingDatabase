@@ -3,11 +3,10 @@
 
 
 <div width="250px">
-    <form action="<StaffID:int>" method="get">
-        <body>
-            <centre>
+    <center>
+        <form action="<StaffID:int>" method="get">
+            <body>            
                 <table>
-
                     <tr>
                         <th>ID</th>
                         <th>First Name</th>
@@ -26,13 +25,10 @@
                         <td>{{staffdetails[5]}}</td>
                     </tr>
                     % end
-                 </table>	
-            </centre>
-        </body>
-        <body>
-            <centre>
+                 </table>	            
+            </body>
+            <body>            
                 <table>
-
                     <tr>
                         <th>AQF Level</th>
                         <th>Qualification</th>
@@ -53,14 +49,11 @@
                         <td>{{qual[6]}}</td>
                     </tr>
                     % end
-                 </table>	
-            </centre>
-        </body>
-        <body>
-            <centre>
+                 </table>	            
+            </body>
+            <body>            
                 <h3>Previouse Teaching Experience</h3>
                 <table>
-
                     <tr>
                         <th>course</th>
                         <th>Role</th>
@@ -81,17 +74,17 @@
                     % end
                     % end
                     % end
-                 </table>	
-            </centre>
-        </body>
-  
-        <a><button type="button" onClick="location.href='/staff/edit/{{staffdetails[0]}}'">Edit</button></a>
-        <a><button type="button" onClick="location.href='/staff/archive/{{staffdetails[0]}}'">archive</button></a>
-        <a onclick="goBack()"><button type="button" class="button">Back</button></a>
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-        </script>
-    </form>
+                 </table>	           
+            </body>
+    
+            <a><button type="button" onClick="location.href='/staff/edit/{{staffdetails[0]}}'">Edit</button></a>
+            <a><button type="button" onClick="location.href='/staff/archive/{{staffdetails[0]}}'">archive</button></a>
+            <a onclick="goBack()"><button type="button" class="button">Back</button></a>
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
+        </form>
+    </center>
 </div>

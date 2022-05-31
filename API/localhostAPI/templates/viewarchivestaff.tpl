@@ -3,11 +3,10 @@
 
 
 <div width="250px">
-    <form action="{{StaffID}}" method="POST">
-        <body>
-            <centre>
+    <center>
+        <form action="{{StaffID}}" method="POST">
+            <body>            
                 <table>
-
                     <tr>
                         <th>ID</th>
                         <th>First Name</th>
@@ -24,16 +23,15 @@
                         <td>{{staffdetails[3]}}</td>
                     </tr>
                     % end
-                 </table>	
-            </centre>
-        </body>
-  
-        <input type="submit" name="save" value="Activate">
-        <a onclick="goBack()"><button type="button" class="button">Back</button></a>
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-        </script>
-    </form>
+                 </table>	           
+            </body>  
+            <input type="submit" name="save" value="Activate">
+            <a onclick="goBack()"><button type="button" class="button">Back</button></a>
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
+        </form>
+    </center>
 </div>

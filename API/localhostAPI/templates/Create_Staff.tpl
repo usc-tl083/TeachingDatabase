@@ -32,7 +32,7 @@
                         </th>
                     </tr>
                 </table>
-            </centre>
+            </center>
         </body>
 
         <datalist id="titles">
