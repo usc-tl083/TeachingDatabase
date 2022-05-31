@@ -10,5 +10,8 @@ To pull all of it together it will be compiled with Python to host and run the F
 
 This Repository will contain the following project deliverables
 * User Manual
+	- Please refer to the GitHub wiki for this information
 * Documentation (With Research & Explanations)
+	- Comments regarding code will be recorded in teachingDbMain.py
 * MySQL Database (With Relevant tables and ERD)
+	- TeachingDatabase/Database documents/SQL.txt
