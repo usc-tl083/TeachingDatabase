@@ -94,8 +94,8 @@ def create_staff():
              #SQL Query, foreign key autoincements are excluded
             QualInsert = (
                 "INSERT INTO Qualification(StaffID, NameOfQualification, AQFLevel_ID, Subject_Area, Institution_Name, Institution_Country, Full_Name_Of_Award, Awarded_Year) \
-                 VALUES (%(StaffID)s, %(NameOfQualification)s, %(AQFLevel_ID)s, %(Subject_Area)s, %(Institution_Names), %(Institution_Country)s, %(Full_Name_Of_Award)s, %(Awarded_Year)s) "
-                         )
+                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+            )
          
             # =s% e.g var_First_name = First_name in StaffInsert query, these are also the input tables in create_staff.tpl
             staff_query = (var_title, var_first_name, var_last_name, var_email, var_address, var_phoneno)
@@ -105,11 +105,11 @@ def create_staff():
             #insert into staff values from staff_query
             dcurs.execute(StaffInsert, staff_query)
             #stores last auto increment
+            StaffID = dcurs.lastrowid
 
-            last_ID = dcurs.lastrowid
-            qual_query = (var_NameOfQualification, var_AQFLevel_ID, var_Subject_Area, var_Institution_Name, var_Institution_Country, var_Full_Name_Of_Award, var_Awarded_Year)
+            qual_query = (StaffID, var_NameOfQualification, var_AQFLevel_ID, var_Subject_Area, var_Institution_Name, var_Institution_Country, var_Full_Name_Of_Award, var_Awarded_Year)
             
-            dcurs.execute(QualInsert, (last_ID,) + qual_query)
+            dcurs.execute(QualInsert, qual_query)
             conx.commit()
             dcurs.close()
             
@@ -185,17 +185,21 @@ def edit_staff(StaffID):
             SA = request.POST.get('Address')
             SPN = request.POST.get('PhoneNo')
             SID = request.POST.get('StaffID')
+
             
             StaffNumber = (StaffID,)
             
             Update = ("UPDATE Staff SET First_Name = %s, Last_Name = %s, Address = %s, PhoneNo = %s WHERE StaffID = %s")
             Staff_Fields = (SFN, SLN, SA, SPN, StaffID)
-            
+
+
+
             selectQuery = ("Select StaffID, First_Name, Last_Name, Address, PhoneNo FROM Staff")
             
             dcurs = conx.cursor(buffered=True)
 
             dcurs.execute(Update, Staff_Fields)
+
             conx.commit()
               
             dcurs.close()
@@ -205,11 +209,13 @@ def edit_staff(StaffID):
 
             selectQuery = ("Select First_name, Last_name, Address, Phoneno FROM Staff WHERE StaffID=%s")
 
+
             StaffNumber = (StaffID,)
 
             dcurs = conx.cursor(buffered=True)
             dcurs.execute(selectQuery, StaffNumber)
             rec = dcurs.fetchall()
+
             conx.commit()
             dcurs.close()
             return template('./templates/edit.tpl', StaffID=StaffID, staff_list=rec)
@@ -239,8 +245,8 @@ def edit_staff(StaffID):
             dcurs = conx.cursor(buffered=True)
             dcurs.execute(selectQuery, StaffNumber)
         
-            if dcurs.rowcount > 0:
-                staff_data = dcurs.fetchall()          
+            staff_data = dcurs.fetchall() 
+            
             dcurs.close()
             return template('./templates/confirmarchive.tpl', StaffID=StaffID, staff_list=staff_data)
 
@@ -293,11 +299,14 @@ def show_staff(StaffID):
         else:
             selectQuery = ("Select StaffID, First_name, Last_name, Address, Phoneno FROM Staff WHERE StaffID=%s")
             StaffNumber = (StaffID,)
+            
             dcurs = conx.cursor(buffered=True)
-            dcurs.execute(selectQuery, StaffNumber)
-        
-            if dcurs.rowcount > 0:
-                staff_data = dcurs.fetchall()          
+
+            dcurs.execute(selectQuery, StaffNumber)        
+            staff_data = dcurs.fetchall()
+
+
+
             dcurs.close()
             return template('./templates/viewarchivestaff.tpl', StaffID=StaffID, staff_list=staff_data)
          
