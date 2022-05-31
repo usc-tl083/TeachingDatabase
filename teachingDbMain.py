@@ -23,7 +23,7 @@ def do_login():
     else:
         return template('./templates/Admin_Page')
 
-@route('/home')
+@route('/Admin_Page')
 def home():
     return template ('./templates/Admin_Page')
 

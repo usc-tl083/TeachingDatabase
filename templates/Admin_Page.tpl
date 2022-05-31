@@ -80,12 +80,7 @@
             <a href="reviewDelete.html"><button type="button" id="deleteRevButton" class="button">Delete Review</button></a><br><br><br><br>
 
             <!-- Back button -->
-            <a onclick="goBack()"><button type="button" class="button">Back</button></a>
-            <script>
-                function goBack() {
-                    window.history.back();    
-                }
-            </script>
+            <a href="/"><button type="button" class="button">Back</button></a>
         </center>
     </body>
 </html>

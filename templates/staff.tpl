@@ -101,11 +101,6 @@
             }
         </script>
         <a href="create_staff"><h3>Add a New Staff Member<h3></a>
-        <a onclick="goBack()"><button type="button" class="button">Back</button></a>
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-        </script>
+        <a href="/Admin_Page"><button type="button" class="button">Back</button></a>
     </body>
 </html>

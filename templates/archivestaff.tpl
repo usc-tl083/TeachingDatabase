@@ -22,11 +22,7 @@
             </centre>
         </body>
 
-        <a onclick="goBack()"><button type="button" class="button">Back</button></a>
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-        </script>
+        <a href="/Admin_Page"><button type="button" class="button">Back</button></a>
+        
     </form>
 </div>
