@@ -69,16 +69,6 @@
             <!-- Link to view AQF records -->
             <a href="/aqfrecords"><button type="button" id="viewAQF" class="button">View AQF Levels</button></a><br><br><br><br>
 
-            <h3>Enter or View Approval</h3>
-            <a href="adminApp.html"><button type="button" id="viewAppButton" class="button">Enter Approval</button></a><br><br>
-            <a href="approvalRecords.html"><button type="button" id="viewApproval" class="button">View Approvals</button></a><br><br>
-            <a href="approvalDelete.html"><button type="button" id="deleteAppButton" class="button">Delete Approval</button></a><br><br><br><br>
-
-            <h3>Enter or View Review</h3>
-            <a href="adminRev.html"><button type="button" id="viewRevButton" class="button">Enter Review</button></a><br><br>
-            <a href="reviewRecords.html"><button type="button" id="viewReview" class="button">View Reviews</button></a><br><br>
-            <a href="reviewDelete.html"><button type="button" id="deleteRevButton" class="button">Delete Review</button></a><br><br><br><br>
-
             <!-- Back button -->
             <a href="/"><button type="button" class="button">Back</button></a>
         </center>
