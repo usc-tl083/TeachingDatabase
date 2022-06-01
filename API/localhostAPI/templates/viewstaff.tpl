@@ -69,7 +69,7 @@ td, th {
                  </table>	            
             </body>
             <body>            
-                <h3>Previouse Teaching Experience</h3>
+                <h3>Previous Teaching Experience</h3>
                 <table>
                     <tr>
                         <th>course</th>
