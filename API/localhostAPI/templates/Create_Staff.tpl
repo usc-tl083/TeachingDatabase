@@ -70,7 +70,7 @@
         </body>
         
         <input type="submit" name="save" value="save">
-        <a href="/Admin_Page"><button type="button" class="button">Back</button></a>
+        <a href="/staff"><button type="button" class="button">Back</button></a>
         </fieldset>
     </form>
 </div>

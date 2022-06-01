@@ -27,7 +27,7 @@
             </body>
            
             <input type="submit" name="save" value="save">
-            <a href="/staff"><button type="button" class="button">Back</button></a>   
+            <a onclick="goBack()"><button type="button" class="button">Back</button></a>   
         </form>
     </center>    
 </div>
