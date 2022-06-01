@@ -70,12 +70,7 @@
         </body>
         
         <input type="submit" name="save" value="save">
-        <a onclick="goBack()"><button type="button" class="button">Back</button></a>
+        <a href="/staff"><button type="button" class="button">Back</button></a>
         </fieldset>
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-        </script>
     </form>
 </div>
