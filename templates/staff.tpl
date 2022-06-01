@@ -24,7 +24,7 @@
                 </tr>
                 % end
             </table>
-            <a href="create_staff"><h3>Add a New Staff Member<h3></a>
+            <a href="/create_staff"><h3>Add a New Staff Member<h3></a>
             <a href="/Admin_Page"><button type="button" class="button">Back</button></a>
         </body>
     </center>
