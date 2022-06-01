@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS AQFLevels;
 DROP TABLE IF EXISTS Organisation; 
 DROP TABLE IF EXISTS Roles;
 DROP TABLE IF EXISTS Courses;
-DROP TABLE IF EXISTS Work;  
 DROP TABLE IF EXISTS Relevant_Teaching_Experience;
 DROP TABLE IF EXISTS Relevant_Employment_Experience;
 DROP TABLE IF EXISTS Journal;
@@ -64,26 +63,22 @@ CREATE TABLE IF NOT EXISTS Courses (
   Course_Name varchar(128) NOT NULL, 
   PRIMARY KEY (Course_ID));
 
-CREATE TABLE IF NOT EXISTS Work (
-  Work_ID     int(10) NOT NULL AUTO_INCREMENT, 
-  Work_Status varchar(20) NOT NULL UNIQUE, 
-  PRIMARY KEY (Work_ID));
 
 CREATE TABLE IF NOT EXISTS Relevant_Teaching_Experience (
-  StaffID         int(10) NOT NULL, 
-  Joining_Date    date NOT NULL, 
-  Finish_Date     date NOT NULL, 
-  Course_ID       int(10) NOT NULL, 
-  Organisation_ID int(10) NOT NULL, 
-  Role_ID         int(10) NOT NULL);
+  StaffID         			int(10) NOT NULL, 
+  Joining_Date    			date NOT NULL, 
+  Finish_Date     			date NOT NULL, 
+  Course_ID       			int(10) NOT NULL, 
+  Organisation_ID 			int(10) NOT NULL, 
+  Role_ID         			int(10) NOT NULL);
+  
 
 CREATE TABLE IF NOT EXISTS Relevant_Employment_Experience (
-  StaffID         int(10) NOT NULL, 
-  Joining_Date    date NOT NULL, 
-  Finish_Date     date NOT NULL, 
-  Organisation_ID int(10) NOT NULL, 
-  Work_ID         int(10) NOT NULL, 
-  Role_ID         int(10) NOT NULL);
+  StaffID         			int(10) NOT NULL, 
+  Joining_Date    			date NOT NULL, 
+  Finish_Date     			date NOT NULL, 
+  Organisation_ID 			int(10) NOT NULL, 
+  Role_ID         			int(10) NOT NULL);
 
 CREATE TABLE IF NOT EXISTS Journal (
   Journal_ID     int(11) NOT NULL AUTO_INCREMENT, 
@@ -147,7 +142,6 @@ ALTER TABLE Relevant_Teaching_Experience ADD INDEX FKRelevant_T815845 (Role_ID),
 ALTER TABLE Relevant_Teaching_Experience ADD INDEX FKRelevant_T37334 (StaffID), ADD CONSTRAINT FKRelevant_T37334 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID);
 ALTER TABLE Relevant_Employment_Experience ADD INDEX FKRelevant_E879153 (StaffID), ADD CONSTRAINT FKRelevant_E879153 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID);
 ALTER TABLE Relevant_Teaching_Experience ADD INDEX FKRelevant_T164776 (Course_ID), ADD CONSTRAINT FKRelevant_T164776 FOREIGN KEY (Course_ID) REFERENCES Courses (Course_ID);
-ALTER TABLE Relevant_Employment_Experience ADD INDEX FKRelevant_E895810 (Work_ID), ADD CONSTRAINT FKRelevant_E895810 FOREIGN KEY (Work_ID) REFERENCES Work (Work_ID);
 ALTER TABLE Relevant_Employment_Experience ADD INDEX FKRelevant_E58316 (Organisation_ID), ADD CONSTRAINT FKRelevant_E58316 FOREIGN KEY (Organisation_ID) REFERENCES Organisation (Organisation_ID);
 ALTER TABLE Publications ADD INDEX FKPublicatio565478 (StaffID), ADD CONSTRAINT FKPublicatio565478 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID);
 ALTER TABLE Admin_Manager ADD INDEX FKAdmin_Mana168093 (StaffID), ADD CONSTRAINT FKAdmin_Mana168093 FOREIGN KEY (StaffID) REFERENCES Staff (StaffID);
@@ -201,7 +195,7 @@ values('SDCIT','SD Buildings, 333 TT Road Hyderabad, TELANGANA 56789 INDIA'),
 
 insert into Courses(Course_Name) values ('Database internals'),('Electronic Communications'),('CEUTHICS'),('Accountant'),('Staff Management');
 insert into Roles(Role_Name) values ('Course coordinator'),('lecturer'),('tutor'),('instructor'),('teaching assistant'),('Marker'),('facilitator');
-insert into work(Work_Status) values ('Full-Time'),('Part-Time');
+
 
 insert into Relevant_Teaching_Experience (StaffID, Joining_Date, Finish_Date, Course_ID, Organisation_ID, Role_ID)
 values(1, '2010-08-01', '2015-01-01',1,1,1),
@@ -209,9 +203,9 @@ values(1, '2010-08-01', '2015-01-01',1,1,1),
 		(3, '2013-01-01', '2017-01-01',3,4,2);
 				  
 
-insert into Relevant_Employment_Experience(StaffID,Joining_Date, Finish_Date ,Organisation_ID, Work_ID,  Role_ID)
-values (4, '2010-01-01', '2018-01-01', 5,1,7),
-		(5, '2018-01-01', '2018-10-10', 2,2,1);
+insert into Relevant_Employment_Experience(StaffID,Joining_Date, Finish_Date ,Organisation_ID,  Role_ID)
+values (4, '2010-01-01', '2018-01-01', 5,7),
+		(5, '2018-01-01', '2018-10-10', 2,1);
 
 insert into journal(Journal_Volume) 
 values ('Journal'),('Conference proceedings'),('books'),('book chapters');
