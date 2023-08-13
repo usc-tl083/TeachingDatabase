@@ -4,12 +4,12 @@ from mysql.connector import errorcode
 
 class DatabaseConnect:
 
-    def __init__(self, database='ict342_s2_21_teachingdb_team_workshop'):
+    def __init__(self, database='342teachingdb'):
         self.__databaseName = database
         self.__config = {
-            'user': 'ict342-TeachingDb_Team',
-            'password': 'mysql-TeachingDb_Team',
-            'host': 'wsp-bict11',
+            'user': 'root',
+            'password': 'password',
+            'host': 'localhost',
             'database': self.__databaseName,
             'raise_on_warnings': True, }
         self.__cnx = ''
