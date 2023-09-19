@@ -41,11 +41,15 @@ class BrowserServer:
                         
                         return p.processRequestFunction(aData)
             else:
-                return template('index_page', tpltitle="Literature Database")
+                return template('index', tpltitle="Teaching Database")
             
         @route('/')
         def __index():
-            return template('index_page', tpltitle="Literature Database")
+            return template('index', tpltitle="Teaching Database")
+        
+        @route('/staff_reg')
+        def __index():
+            return template('staff_reg', tpltitle="New Staff Registration")
         
         @route('/w3stemplate')
         def __index():

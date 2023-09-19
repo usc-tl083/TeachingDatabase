@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style/form.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+    <title>{{tpltitle}}</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <style>
+        html,
+        body {
+            min-height: 100%;
+        }
+
+        body,
+        div,
+        form,
+        input,
+        select,
+        textarea,
+        label,
+        p {
+            padding: 0;
+            margin: 0;
+            outline: none;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 14px;
+            color: #666;
+            line-height: 22px;
+        }
+
+        h1 {
+            position: absolute;
+            margin: 0;
+            font-size: 40px;
+            color: #fff;
+            z-index: 2;
+            line-height: 83px;
+        }
+
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+        }
+
+        .testbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+            padding: 20px;
+        }
+
+        form {
+            width: 100%;
+            padding: 20px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 0 8px #006622;
+        }
+
+        .banner {
+            position: relative;
+            height: 100px;
+            background-color: teal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner::after {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.2);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        input,
+        select,
+        textarea {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input {
+            width: calc(100% - 10px);
+            padding: 5px;
+        }
+
+        input[type="date"] {
+            padding: 4px 5px;
+        }
+
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+        }
+
+        .item:hover p,
+        .item:hover i,
+        .question:hover p,
+        .question label:hover,
+        input:hover::placeholder {
+            color: #006622;
+        }
+
+        .item input:hover,
+        .item select:hover,
+        .item textarea:hover {
+            border: 1px solid transparent;
+            box-shadow: 0 0 3px 0 #006622;
+            color: #006622;
+        }
+
+        .item {
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .item span {
+            color: red;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button {
+            display: none;
+        }
+
+        .item i,
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            position: absolute;
+            font-size: 20px;
+            color: #00b33c;
+        }
+
+        .item i {
+            right: 1%;
+            top: 30px;
+            z-index: 1;
+        }
+
+        .week {
+            display: flex;
+            justfiy-content: space-between;
+        }
+
+        .colums {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .colums div {
+            width: 48%;
+        }
+
+        [type="date"]::-webkit-calendar-picker-indicator {
+            right: 1%;
+            z-index: 2;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        input[type=radio],
+        input[type=checkbox] {
+            display: none;
+        }
+
+        label.radio {
+            position: relative;
+            display: inline-block;
+            margin: 5px 20px 15px 0;
+            cursor: pointer;
+        }
+
+        .question span {
+            margin-left: 30px;
+        }
+
+        .question-answer label {
+            display: block;
+        }
+
+        label.radio:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+        }
+
+        input[type=radio]:checked+label:before,
+        label.radio:hover:before {
+            border: 2px solid #006622;
+        }
+
+        label.radio:after {
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 5px;
+            width: 8px;
+            height: 4px;
+            border: 3px solid #006622;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+            opacity: 0;
+        }
+
+        input[type=radio]:checked+label:after {
+            opacity: 1;
+        }
+
+        .flax {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .btn-block {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        button {
+            width: 150px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #006622;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00b33c;
+        }
+
+        @media (min-width: 568px) {
+
+            .name-item,
+            .city-item {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .name-item input,
+            .name-item div {
+                width: calc(50% - 20px);
+            }
+
+            .name-item div input {
+                width: 97%;
+            }
+
+            .name-item div label {
+                display: block;
+                padding-bottom: 5px;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body class="w3-container">
+    <!-- Header -->
+    <!-- <header class="w3-container w3-theme w3-padding" id="myHeader">
+        <div class="w3-center">
+            <h4 class="w3-xxxlarge w3-animate-bottom">{{tpltitle}}</h4>
+        </div>
+    </header> -->
+
+    <div class="testbox">
+        <form>
+            <div class="banner">
+                <h1>{{tpltitle}}</h1>
+            </div>
+            <br />
+            <fieldset>
+                <legend>Personal Information</legend>
+                <div class="colums">
+                    <div class="item">
+                        <label for="fname">First Name<span>*</span></label>
+                        <input id="fname" type="text" name="fname" placeholder="First Name"/>
+                    </div>
+                    <div class="item">
+                        <label for="mname">Middle Name</label>
+                        <input id="mname" type="text" name="mname" placeholder="Middle Name"/>
+                    </div>
+                    <div class="item">
+                        <label for="lname">Last Name<span>*</span></label>
+                        <input id="lname" type="text" name="lname" placeholder="Last Name"/>
+                    </div>
+                    <div class="question">
+                        <label >Gender<span style="color: red; margin: 0px;">*</span></label>
+                        <div class="question-answer">
+                            <div>
+                                <input type="radio" value="male" id="gender-male" name="male" />
+                                <label for="gender-male" class="radio"><span>Male</span></label>
+                                <input type="radio" value="female" id="gender-female" name="female" />
+                                <label for="gender-female" class="radio"><span>Female</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label for="dob">Date of Birth<span>*</span></label>
+                        <input id="dob" type="date" name="dob" />
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="item">
+                        <label for="adderss">Address<span>*</span></label>
+                        <input id="adderss" type="text" name="adderss" placeholder="Address"/>
+                    </div>
+                    <div class="item">
+                        <label for="email">Email <span>*</span></label>
+                        <input id="email" type="email" name="email" placeholder="your@email.com"/>
+                    </div>
+                    <div class="item">
+                        <label for="phone">Phone <span>*</span></label>
+                        <input id="phone" type="tel" name="phone" placeholder="0451234567"/>
+                    </div>
+                </div>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Qualification Details</legend>
+                <p>Please fill in your highest completed qualification below:</p>
+                <div class="colums">
+                    <div class="item">
+                        <label for="qualification">Qualification<span>*</span></label>
+                        <input id="qualification" type="text" name="qualification" placeholder="Name of Qualification"/>
+                    </div>
+                    <div class="item">
+                        <label for="subject">Subject<span>*</span></label>
+                        <input id="subject" type="text" name="subject" placeholder="Subject or Major Area"/>
+                    </div>
+                    <div class="item">
+                        <label for="institution">Institution<span>*</span></label>
+                        <input id="institution" type="text" name="institution" placeholder="Full Name of Awarding Institution"/>
+                    </div>
+                    <div class="item">
+                        <label for="year">Year<span>*</span></label>
+                        <input id="year" type="text" name="year" placeholder="Year Awarded"/>
+                    </div>
+
+                </div>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Teaching Experience
+                </legend>
+                <p>Please fill in your most recent teaching experience below:</p>
+                <div class="colums">
+                    <div class="item">
+                        <label for="period">Period<span>*</span></label>
+                        <input id="period" type="text" name="period" placeholder="Teaching Period"/>
+                    </div>
+                    <div class="item">
+                        <label for="field">Field<span>*</span></label>
+                        <input id="field" type="text" name="field" placeholder="Field of Study/Course Title"/>
+                    </div>
+                    <div class="item">
+                        <label for="teaching-institution">Institution<span>*</span></label>
+                        <input id="teaching-institution" type="text" name="teaching-institution" placeholder="Name of Organization/Institution"/>
+                    </div>
+                    <div class="item">
+                        <label for="role">Role<span>*</span></label>
+                        <input id="role" type="text" name="role" placeholder="Course Coordinator etc."/>
+                    </div>
+
+                </div>
+
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Relevant Employment/Experience</legend>
+                <p>Please provide your most recent employment experience below</p>
+                <div class="colums">
+                    <div class="item">
+                        <label for="employment-period">Employment Period</label>
+                        <input id="employment-period" type="text" name="employment-period" placeholder="Period of Employment"/>
+                    </div>
+                    <div class="item">
+                        <label for="relevant-duties">Relevant duties</label>
+                        <input id="relevant-duties" type="text" name="relevant-duties" placeholder="Duties or Roles"/>
+                    </div>
+                    <div class="item">
+                        <label for="employer">Employer</label>
+                        <input id="employer" type="text" name="employer" placeholder="Name of Employer"/>
+                    </div>
+                    <div class="item">
+                        <label for="position-title">Position Title</label>
+                        <input id="position-title" type="text" name="position-title" placeholder="Title of Position"/>
+                    </div>
+                    <div class="item">
+                        <p>FTE</p>
+                        <select>
+                            <option value="full-time" selected>Full-Time</option>
+                            <option value="part-time">Part-Time</option>
+                            <option value="casual">Casual</option>
+                        </select>
+                    </div>
+                </div>                
+            </fieldset>
+            <div class="item">
+                <label for="other-info">Other Information</label>
+                <textarea id="other-info" name="other-info" rows="5" onfocus="value=''">Please provide us with any other relevant information you believe is relevant.</textarea>
+            </div>
+            <fieldset>
+                <legend>Publications</legend>
+                <p>Please fill in your most/top recent publication below:</p>
+                <div class="colums">
+                    <div class="item">
+                        <label for="author">Author</label>
+                        <input id="author" type="text" name="author" placeholder="Author Name"/>
+                    </div>
+                    <div class="item">
+                        <label for="publication-year">Year of Publication</label>
+                        <input id="publication-year" type="text" name="publication-year" placeholder="Year of Publication"/>
+                    </div>
+                    <div class="item">
+                        <label for="publication-title">Title of Publication</label>
+                        <input id="publication-title" type="text" name="publication-title" placeholder="Title of Publication"/>
+                    </div>
+                    <div class="item">
+                        <label for="journal">Journal/Volume/Proceedings</label>
+                        <input id="journal" type="text" name="journal" placeholder="Journal/Volume/Proceedings"/>
+                    </div>
+                    <div class="item">
+                        <label for="publication-type">Type of Publication</label>
+                        <input id="publication-type" type="text" name="publication-type" placeholder="Type of Publication"/>
+                    </div>
+                    <div class="item">
+                        <label for="field-of-edu">Broad Field of Education</label>
+                        <input id="field-of-edu" type="text" name="field-of-edu" placeholder="Broad Field of Education"/>
+                    </div>
+                    <div class="question">
+                        <label>Peer Reviewed/Reviewed</label>
+                        <div class="question-answer">
+                            <div>
+                                <input type="radio" value="peer-rev-yes" id="peer-rev-yes" name="peer-rev-yes" />
+                                <label for="peer-rev-yes" class="radio"><span>Yes</span></label>
+                                <input type="radio" value="peer-rev-no" id="peer-rev-no" name="peer-rev-no" />
+                                <label for="peer-rev-no" class="radio"><span>No</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>Research Classification</label>
+                        <div class="question-answer">
+                            <div>
+                                <input type="radio" value="research-class" id="research-class" name="research-class" />
+                                <label for="research-class" class="radio"><span>Research</span></label>
+                                <input type="radio" value="scholar-class" id="scholar-class" name="scholar-class" />
+                                <label for="scholar-class" class="radio"><span>Scholarship</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="w3-bar btn-block">
+                <button type="submit" href="/">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        var a = document.getElementByID("fee").value;
+        var b = document.getElementByID("fee1").value;
+        var c = document.getElementByID("fee2").value;
+        var result = a + b + c;
+        function calcNumbers() {
+            document.getElementByID("result").innerHTML = result;
+        }
+    </script>
+
+</body>
+
+</html>
