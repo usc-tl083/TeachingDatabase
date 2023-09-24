@@ -1,6 +1,6 @@
 
 # https://bottlepy.org/docs/dev/index.html
-from browser.bottle import route, run, template, HTTPResponse, TEMPLATE_PATH, response, request, post, redirect
+from browser.bottle import route, run, template, HTTPResponse, TEMPLATE_PATH, response, request, post, redirect, static_file, Bottle
 from browser.processServer import ProcessServer
 import json
 
@@ -41,11 +41,11 @@ class BrowserServer:
                         
                         return p.processRequestFunction(aData)
             else:
-                return template('index', tpltitle="Teaching Database")
+                return template('login21', tpltitle="Teaching Database")
             
         @route('/')
         def __index():
-            return template('index', tpltitle="Teaching Database")
+            return template('login21', tpltitle="Teaching Database")
         
         @route('/staff_reg')
         def __index():
@@ -59,6 +59,14 @@ class BrowserServer:
         def __index():
             return template('w3Schools_modal')
         
+        @route('/static/<filepath:path>')
+        def serve_static(filepath):
+            return static_file(filepath, root='static')
+        
+        # @route('/static/js/<filename:path>')
+        # def serve_js(filename):
+        #     return static_file(filename, root='/static/js')
+        
         run(host='localhost', port=8080, debug=True)
         
 
@@ -68,5 +76,7 @@ class BrowserServer:
     # Automatically close when un-instantiated
     def __exit__(self, exc_type, exc_value, traceback):
         pass
+
+    
     
     

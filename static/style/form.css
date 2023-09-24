@@ -38,8 +38,8 @@ line-height: 83px;
     }
     .banner {
     position: relative;
-    height: 300px;
-    background-image: url("/uploads/media/default/0001/02/e2502bb5e1dab7d5cc9b011c745033821aad632c.jpeg");  
+    height: 100px;
+    background-color: #5ad387;
     background-size: cover;
     display: flex;
     justify-content: center;
