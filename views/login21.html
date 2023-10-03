@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iofrm</title>
+    <title>{{tpltitle}}</title>
     <link rel="stylesheet" type="text/css" href="/static/style/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/style/fontawesome-all.min.css">
     <link rel="stylesheet" type="text/css" href="/static/style/iofrm-style.css">
@@ -12,7 +12,7 @@
 <body>
     <div class="form-body without-side">
         <div class="website-logo">
-            <a href="/views/index.html">
+            <a href="/display_data">
                 <div class="logo">
                     <img class="logo-size" src="/static/img/USC_Logo_Transparent.png" alt="">
                 </div>
@@ -26,6 +26,14 @@
                 </div>
             </div>
             <div class="form-holder">
+                % if message=="success-form":
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong> Your form is submitted
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                % end
                 <div class="form-content">
                     <div class="form-items">
                         <h3>Teaching Database</h3>

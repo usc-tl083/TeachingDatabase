@@ -22,39 +22,6 @@ body {
     background-color: #9683FA;
 }
 
-.website-logo {
-    display: inline-block;
-    position: absolute !important;
-    top: 50px;
-    left: 41% !important;
-    right: initial;
-    bottom: initial;
-}
-
-.website-logo img {
-    width: 50%;
-}
-
-.website-logo .logo {
-    background-image: url("../img/USC_Logo_Transparent.png");
-}
-
-.website-logo .logo img {
-    width: 50%;
-}
-
-.website-logo-inside img {
-    width: 50%;
-}
-
-.website-logo-inside .logo {
-    background-image: url("../img/USC_Logo_Transparent.png");
-}
-
-.website-logo-inside .logo img {
-    width: 50%;
-}
-
 .img-holder {
     width: 0;
     background-color: #57D38C;

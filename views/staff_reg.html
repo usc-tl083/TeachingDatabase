@@ -25,7 +25,7 @@
     </header> -->
 
     <div class="testbox">
-        <form>
+        <form method="post" action="/submit_data">
             <div class="banner">
                 <h1>{{tpltitle}}</h1>
             </div>
@@ -35,7 +35,7 @@
                 <div class="colums">
                     <div class="item">
                         <label for="fname">First Name<span>*</span></label>
-                        <input id="fname" type="text" name="fname" placeholder="First Name"/>
+                        <input id="fname" type="text" name="fname" placeholder="First Name" required/>
                     </div>
                     <div class="item">
                         <label for="mname">Middle Name</label>
@@ -43,35 +43,37 @@
                     </div>
                     <div class="item">
                         <label for="lname">Last Name<span>*</span></label>
-                        <input id="lname" type="text" name="lname" placeholder="Last Name"/>
+                        <input id="lname" type="text" name="lname" placeholder="Last Name" required/>
                     </div>
                     <div class="question">
-                        <label >Gender<span style="color: red; margin: 0px;">*</span></label>
+                        <label>Gender<span style="color: red; margin: 0px;">*</span></label>
                         <div class="question-answer">
-                            <div>
-                                <input type="radio" value="male" id="gender-male" name="male" />
-                                <label for="gender-male" class="radio"><span>Male</span></label>
-                                <input type="radio" value="female" id="gender-female" name="female" />
-                                <label for="gender-female" class="radio"><span>Female</span></label>
+                            <div class="cols">
+                                <input type="radio" value="male" id="male" name="gender" required/>
+                                <label for="male" class="radio rows"><span>Male</span></label>
+                                <input type="radio" value="female" id="female" name="gender" />
+                                <label for="female" class="radio"><span>Female</span></label>
+                                <input type="radio" value="other" id="other" name="gender" />
+                                <label for="other" class="radio"><span>Other</span></label>
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <label for="dob">Date of Birth<span>*</span></label>
-                        <input id="dob" type="date" name="dob" />
+                        <input id="dob" type="date" name="dob" required/>
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     <div class="item">
-                        <label for="adderss">Address<span>*</span></label>
-                        <input id="adderss" type="text" name="adderss" placeholder="Address"/>
+                        <label for="address">Address<span>*</span></label>
+                        <input id="address" type="text" name="address" placeholder="Address" required/>
                     </div>
                     <div class="item">
                         <label for="email">Email <span>*</span></label>
-                        <input id="email" type="email" name="email" placeholder="your@email.com"/>
+                        <input id="email" type="email" name="email" placeholder="your@email.com" required/>
                     </div>
                     <div class="item">
                         <label for="phone">Phone <span>*</span></label>
-                        <input id="phone" type="tel" name="phone" placeholder="0451234567"/>
+                        <input id="phone" type="tel" name="phone" placeholder="0451234567" required/>
                     </div>
                 </div>
             </fieldset>
@@ -81,20 +83,20 @@
                 <p>Please fill in your highest completed qualification below:</p>
                 <div class="colums">
                     <div class="item">
-                        <label for="qualification">Qualification<span>*</span></label>
-                        <input id="qualification" type="text" name="qualification" placeholder="Name of Qualification"/>
+                        <label for="qualification_name">Qualification<span>*</span></label>
+                        <input id="qualification_name" type="text" name="qualification_name" placeholder="Name of Qualification" required/>
                     </div>
                     <div class="item">
-                        <label for="subject">Subject<span>*</span></label>
-                        <input id="subject" type="text" name="subject" placeholder="Subject or Major Area"/>
+                        <label for="subject_area">Subject<span>*</span></label>
+                        <input id="subject_area" type="text" name="subject_area" placeholder="Subject or Major Area" required/>
                     </div>
                     <div class="item">
-                        <label for="institution">Institution<span>*</span></label>
-                        <input id="institution" type="text" name="institution" placeholder="Full Name of Awarding Institution"/>
+                        <label for="institution_name">Institution<span>*</span></label>
+                        <input id="institution_name" type="text" name="institution_name" placeholder="Full Name of Awarding Institution" required/>
                     </div>
                     <div class="item">
-                        <label for="year">Year<span>*</span></label>
-                        <input id="year" type="text" name="year" placeholder="Year Awarded"/>
+                        <label for="year_issued">Year<span>*</span></label>
+                        <input id="year_issued" type="text" name="year_issued" placeholder="Year Awarded" required/>
                     </div>
 
                 </div>
@@ -106,20 +108,20 @@
                 <p>Please fill in your most recent teaching experience below:</p>
                 <div class="colums">
                     <div class="item">
-                        <label for="period">Period<span>*</span></label>
-                        <input id="period" type="text" name="period" placeholder="Teaching Period"/>
+                        <label for="teaching_period">Period<span>*</span></label>
+                        <input id="teaching_period" type="text" name="teaching_period" placeholder="Teaching Period" required/>
                     </div>
                     <div class="item">
                         <label for="field">Field<span>*</span></label>
-                        <input id="field" type="text" name="field" placeholder="Field of Study/Course Title"/>
+                        <input id="field" type="text" name="field" placeholder="Field of Study/Course Title" required/>
                     </div>
                     <div class="item">
                         <label for="teaching-institution">Institution<span>*</span></label>
-                        <input id="teaching-institution" type="text" name="teaching-institution" placeholder="Name of Organization/Institution"/>
+                        <input id="teaching-institution" type="text" name="teaching-institution" placeholder="Name of Organization/Institution" required/>
                     </div>
                     <div class="item">
                         <label for="role">Role<span>*</span></label>
-                        <input id="role" type="text" name="role" placeholder="Course Coordinator etc."/>
+                        <input id="role" type="text" name="role" placeholder="Course Coordinator etc." required/>
                     </div>
 
                 </div>
@@ -147,8 +149,8 @@
                         <input id="position-title" type="text" name="position-title" placeholder="Title of Position"/>
                     </div>
                     <div class="item">
-                        <p>FTE</p>
-                        <select>
+                        <label for="work_status">FTE</label>
+                        <select name="work_status" id="work_status">
                             <option value="full-time" selected>Full-Time</option>
                             <option value="part-time">Part-Time</option>
                             <option value="casual">Casual</option>
@@ -177,25 +179,17 @@
                         <input id="publication-title" type="text" name="publication-title" placeholder="Title of Publication"/>
                     </div>
                     <div class="item">
-                        <label for="journal">Journal/Volume/Proceedings</label>
-                        <input id="journal" type="text" name="journal" placeholder="Journal/Volume/Proceedings"/>
-                    </div>
-                    <div class="item">
                         <label for="publication-type">Type of Publication</label>
                         <input id="publication-type" type="text" name="publication-type" placeholder="Type of Publication"/>
-                    </div>
-                    <div class="item">
-                        <label for="field-of-edu">Broad Field of Education</label>
-                        <input id="field-of-edu" type="text" name="field-of-edu" placeholder="Broad Field of Education"/>
                     </div>
                     <div class="question">
                         <label>Peer Reviewed/Reviewed</label>
                         <div class="question-answer">
                             <div>
-                                <input type="radio" value="peer-rev-yes" id="peer-rev-yes" name="peer-rev-yes" />
-                                <label for="peer-rev-yes" class="radio"><span>Yes</span></label>
-                                <input type="radio" value="peer-rev-no" id="peer-rev-no" name="peer-rev-no" />
-                                <label for="peer-rev-no" class="radio"><span>No</span></label>
+                                <input type="radio" value="yes" id="yes" name="peer-rev" />
+                                <label for="yes" class="radio"><span>Yes</span></label>
+                                <input type="radio" value="no" id="no" name="peer-rev" />
+                                <label for="no" class="radio"><span>No</span></label>
                             </div>
                         </div>
                     </div>
@@ -203,9 +197,9 @@
                         <label>Research Classification</label>
                         <div class="question-answer">
                             <div>
-                                <input type="radio" value="research-class" id="research-class" name="research-class" />
+                                <input type="radio" value="research-class" id="research-class" name="classification" />
                                 <label for="research-class" class="radio"><span>Research</span></label>
-                                <input type="radio" value="scholar-class" id="scholar-class" name="scholar-class" />
+                                <input type="radio" value="scholar-class" id="scholar-class" name="classification" />
                                 <label for="scholar-class" class="radio"><span>Scholarship</span></label>
                             </div>
                         </div>
@@ -213,20 +207,12 @@
                 </div>
             </fieldset>
             <div class="w3-bar btn-block">
-                <button type="submit" href="/" class="btn btn-success">Submit</button>
+                <input type="submit" value="Submit" class="btn btn-success">
+                <!-- <button type="submit" href="/" class="btn btn-success">Submit</button> -->
                 <a href="/" class="btn btn-outline-danger">Cancel</a>
             </div>
         </form>
     </div>
-    <script>
-        var a = document.getElementByID("fee").value;
-        var b = document.getElementByID("fee1").value;
-        var c = document.getElementByID("fee2").value;
-        var result = a + b + c;
-        function calcNumbers() {
-            document.getElementByID("result").innerHTML = result;
-        }
-    </script>
 
 </body>
 

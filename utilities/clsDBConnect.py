@@ -2,13 +2,13 @@ import mysql.connector
 from mysql.connector import errorcode
 class DatabaseConnect:
 
-    def __init__(self, database = 'lit_database'):
+    def __init__(self, database = 'teaching_database'):
         # 'ai_study_database'
         self.__databaseName = database
         self.__config = {
-            'user': 'dbuser',
-            'password': '4MyUser2Use!',
-            'host': '127.0.0.1',
+            'user': 'root',
+            'password': '',
+            'host': 'localhost',
             'database': self.__databaseName,
             'raise_on_warnings': True, }
         self.__cnx = ''
