@@ -3,13 +3,26 @@
 from browser.bottle import route, run, template, HTTPResponse, TEMPLATE_PATH, response, request, post, redirect, static_file, Bottle
 from browser.processServer import ProcessServer
 import json
-import browser.bottle as bottle
+import browser.bottle as app
 from utilities.clsDBConnect import DatabaseConnect as dbcon
 from datetime import datetime
+import bcrypt
+from beaker.middleware import SessionMiddleware
 
 message=""
 
 class BrowserServer:
+
+    # Beaker session configuration
+    session_opts = {
+        'session.type': 'memory',
+        'session.cookie_expires': 300,  # Session expires after 300 seconds (adjust as needed)
+        'session.auto': True,
+    }
+
+    # Wrap the Bottle app with Beaker session middleware
+    app_middleware = SessionMiddleware(app.app(), session_opts)
+
 
     def __init__(self):
         # print(TEMPLATE_PATH)
@@ -68,6 +81,65 @@ class BrowserServer:
         def serve_static(filepath):
             return static_file(filepath, root='static')
         
+    
+        # Define a route for the login page
+        @route('/login')
+        def login():
+            return template('login21.html', tpltitle="Teaching Database", message=message)
+
+        # Define a route for the logout
+        @route('/logout')
+        def logout():
+            # Access the session and remove the 'authenticated' key
+            session = request.environ.get('beaker.session')
+            session.pop('authenticated', None)
+            
+            # Redirect the user to the login page
+            return redirect('/login')
+
+        # Define a route to handle the login form submission
+        @route('/login', method='POST')
+        def do_login():
+            # Retrieve user input from the login form
+            email = request.forms.get('email')
+            password = request.forms.get('password')
+
+            with dbcon() as db:
+                conx = db.opendb()
+                dcurs = conx.cursor(buffered=True)
+
+                # Query the database to fetch the user's hashed password
+                dcurs.execute("SELECT password FROM admin WHERE email = %s", (email,))
+                result = dcurs.fetchone()
+
+                dcurs.close()
+                conx.close()
+
+            if result:
+                stored_password = result[0]
+                # Verify the entered password against the stored hash
+                if bcrypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
+                    # Passwords match; you can now create a session or redirect to a dashboard
+                    # Set a session variable to mark the user as authenticated
+                    session = request.environ.get('beaker.session')
+                    session['authenticated'] = True
+                    return redirect('/dashboard')
+                else:
+                    return "Login failed. Please check your credentials."
+            else:
+                return "User not found. Please check your email."
+
+        # Define a route for the success page (you can replace this with your actual dashboard)
+        @route('/dashboard')
+        def dashboard():
+            # Check if the user is authenticated by inspecting the session variable
+            session = request.environ.get('beaker.session')
+            if 'authenticated' in session and session['authenticated']:
+                return "Login successful. Welcome!"
+            else:
+                # If not authenticated, redirect to the login page or display an error message
+                return redirect('/login')
+                
         #This is where all the data from the staff table is viewed
         @route('/display_data')
         def display_data():
@@ -170,7 +242,7 @@ class BrowserServer:
         # def serve_js(filename):
         #     return static_file(filename, root='/static/js')
         
-        run(host='localhost', port=8080, debug=True)
+        run(app=self.app_middleware, host='localhost', port=8080, debug=True)
         
 
     def __enter__(self):
