@@ -69,14 +69,7 @@ class BrowserServer:
         def __index():
             return template('staff_reg', tpltitle="New Staff Registration")
         
-        @route('/w3stemplate')
-        def __index():
-            return template('w3Schools_Template')
-        
-        @route('/w3smodal')
-        def __index():
-            return template('w3Schools_modal')
-        
+        # Define a static route for the javascript, css and image files to be used by html pages
         @route('/static/<filepath:path>')
         def serve_static(filepath):
             return static_file(filepath, root='static')
@@ -105,15 +98,13 @@ class BrowserServer:
             password = request.forms.get('password')
 
             with dbcon() as db:
-                conx = db.opendb()
-                dcurs = conx.cursor(buffered=True)
+                dcurs = db.opendb().cursor(buffered=True)
 
                 # Query the database to fetch the user's hashed password
                 dcurs.execute("SELECT password FROM admin WHERE email = %s", (email,))
                 result = dcurs.fetchone()
 
                 dcurs.close()
-                conx.close()
 
             if result:
                 stored_password = result[0]
@@ -132,28 +123,34 @@ class BrowserServer:
         # Define a route for the success page (you can replace this with your actual dashboard)
         @route('/dashboard')
         def dashboard():
-            # Check if the user is authenticated by inspecting the session variable
-            session = request.environ.get('beaker.session')
-            if 'authenticated' in session and session['authenticated']:
-                return "Login successful. Welcome!"
-            else:
-                # If not authenticated, redirect to the login page or display an error message
-                return redirect('/login')
-                
-        #This is where all the data from the staff table is viewed
-        @route('/display_data')
-        def display_data():
             with dbcon() as db:
-                conx = db.opendb()
-                dcurs = conx.cursor(buffered=True)
+                dcurs = db.opendb().cursor(buffered=True)
                 query = "SELECT * FROM staff"
                 dcurs.execute(query)
                 datas = dcurs.fetchall()
 
                 dcurs.close()
-                conx.close()
+            # Check if the user is authenticated by inspecting the session variable
+            session = request.environ.get('beaker.session')
+            if 'authenticated' in session and session['authenticated']:
 
-            return template('all_staffs_page.html', data=datas, tpltitle="Staff Information")
+                return template('dashboard.html', data=datas, tpltitle="Dashboard")
+            else:
+                # If not authenticated, redirect to the login page or display an error message
+                return redirect('/login')
+                
+        # From here the specific staff record is extracted
+        @route('/display_data/<staff_id:int>')
+        def display_data(staff_id):
+            with dbcon() as db:
+                dcurs = db.opendb().cursor(buffered=True)
+                dcurs.execute(
+                    "SELECT * FROM staff AS a INNER JOIN qualifications AS b ON a.STAFF_ID = b.AQF_Level_ID INNER JOIN teaching_experience AS c ON a.STAFF_ID = c.STAFF_ID INNER JOIN other_experience AS d ON a.STAFF_ID = d.STAFF_ID INNER JOIN additional_notes AS e ON a.STAFF_ID = e.STAFF_ID INNER JOIN publications AS f ON a.STAFF_ID = f.PUBLICATION_ID WHERE a.STAFF_ID = %s", [staff_id]
+                    )
+                data = dcurs.fetchone()
+                dcurs.close()
+
+            return template('record.html', data=data, tpltitle="Staff Record")
         
         # This is where the submitted form data is processed to add the data to the database
         # Database is connected here within this route/function and added to the respective tables

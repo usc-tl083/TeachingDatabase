@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Record - SB Admin</title>
+        <link href="/static/style/dashboard.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="bg-secondary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">{{data[2] + " " + data[4]}}</h3></div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputFirstName" type="text" placeholder="{{data [2]}}" value="{{data [2]}}" disabled/>
+                                                        <label for="inputFirstName">First name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputMiddleName" type="text" placeholder="{{data [3]}}" value="{{data [3]}}" disabled/>
+                                                        <label for="inputMiddleName">Middle name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputFirstName" type="text" placeholder="{{data [4]}}" value="{{data [4]}}" disabled/>
+                                                        <label for="inputLastName">Last name</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputDOB" type="text" placeholder="{{data [5]}}" value="{{data [5]}}" disabled/>
+                                                        <label for="inputDOB">Date of Birth</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputAddress" type="text" placeholder="{{data [6]}}" value="{{data [6]}}" disabled/>
+                                                        <label for="inputAddress">Address</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputEmail" type="text" placeholder="{{data [7]}}" value="{{data [7]}}" disabled/>
+                                                        <label for="inputEmail">Email</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputPhone" type="text" placeholder="{{data [8]}}" value="{{data [8]}}" disabled/>
+                                                        <label for="inputPhone">Phone</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputQualification" type="email" placeholder="{{data [11]}}" value="{{ data [11] }}" disabled/>
+                                                <label for="inputQualification">Qualification</label>
+                                            </div>
+                                        
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputSubject" type="text" placeholder="{{data [12]}}" value="{{data [12]}}" disabled/>
+                                                        <label for="inputSubject">Subject</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputYear" type="text" placeholder="{{data [14]}}" value="{{data [14]}}" disabled/>
+                                                        <label for="inputYear">Year</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputInstitution" type="text" placeholder="{{data [13]}}" value="{{data [13]}}" disabled/>
+                                                <label for="inputInstitution">Institution</label>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputOrganisation" type="text" placeholder="{{data [19]}}" value="{{data [19]}}" disabled/>
+                                                <label for="inputOrganisation">Name of Organisation/Institution</label>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputPeriod" type="text" placeholder="{{data [16]}}" value="{{data [16]}}" disabled/>
+                                                        <label for="inputPeriod">Teaching Period</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputRole" type="text" placeholder="{{data [20]}}" value="{{data [20]}}" disabled/>
+                                                        <label for="inputRole">Role</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputField" type="text" placeholder="{{data [18]}}" value="{{data [18]}}" disabled/>
+                                                <label for="inputField">Field of Study</label>
+                                            </div>
+                                            <br>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputEmpPeriod" type="text" placeholder="{{data [25]}}" value="{{data [25]}}" disabled/>
+                                                        <label for="inputEmpPeriod">Employment Period</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputEmpName" type="text" placeholder="{{data [22]}}" value="{{data [22]}}" disabled/>
+                                                        <label for="inputEmpName">Employer Name</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputEmpPosition" type="text" placeholder="{{data [23]}}" value="{{data [23]}}" disabled/>
+                                                        <label for="inputEmpPosition">Position Title</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputEmpFTE" type="text" placeholder="{{data [24]}}" value="{{data [24]}}" disabled/>
+                                                        <label for="inputEmpFTE">FTE</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputEmpDuties" type="text" placeholder="{{data [26]}}" value="{{data [26]}}" disabled/>
+                                                <label for="inputEmpDuties">Relevant Duties or Roles</label>
+                                            </div>
+                                            <br>
+                                            
+                                            <div class="form-floating mb-3">
+                                                <textarea style="height: fit-content;" class="form-control" id="inputOtherInfo" disabled readonly>{{data [28]}}</textarea>
+                                                <label for="inputOtherInfo">Other Information</label>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="inputPublication" type="text" placeholder="{{data [34]}}" value="{{data [34]}}" disabled/>
+                                                <label for="inputPublication">Publication Title</label>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputAuthor" type="text" placeholder="{{data [33]}}" value="{{data [33]}}" disabled/>
+                                                        <label for="inputAuthor">Author Name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputPublicationType" type="text" placeholder="{{data [36]}}" value="{{data [36]}}" disabled/>
+                                                        <label for="inputPublicationType">Type of Publication</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputPublishedYear" type="text" placeholder="{{data [35]}}" value="{{data [35]}}" disabled/>
+                                                        <label for="inputPublishedYear">Published Year</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control text-uppercase" id="inputPeer" type="text" placeholder="{{data [37]}}" value="{{data [37]}}" disabled/>
+                                                        <label for="inputPeer">Peer Reviewed</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control text-uppercase" id="inputResClass" type="text" placeholder="{{data [38]}}" value="{{data [38]}}" disabled/>
+                                                        <label for="inputResClass">Research Classification</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-4 mb-0">
+                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                    <a class="btn btn-primary me-md-2" href="login.html">Approve</a>
+                                                    <a class="btn btn-danger" href="login.html">Disapprove</a></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="/dashboard">Cancel</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/static/js/dashboard.js"></script>
+    </body>
+</html>

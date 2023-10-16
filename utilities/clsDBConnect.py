@@ -3,7 +3,6 @@ from mysql.connector import errorcode
 class DatabaseConnect:
 
     def __init__(self, database = 'teaching_database'):
-        # 'ai_study_database'
         self.__databaseName = database
         self.__config = {
             'user': 'root',

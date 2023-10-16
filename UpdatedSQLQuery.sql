@@ -6,6 +6,8 @@ SET time_zone = "+00:00";
 ### ALLOWS FOR THE RECREATION OF TABLES AND INPUT OF DATA IN ANY ORDER ###
 SET FOREIGN_KEY_CHECKS = 0;
 
+DROP DATABASE IF EXISTS TEACHING_DATABASE;
+
 CREATE DATABASE TEACHING_DATABASE;
 USE TEACHING_DATABASE;
 ### 'DROP TABLE' DELETES TABLE AND DATA IF EXISTENT ###
@@ -46,31 +48,36 @@ CREATE TABLE `additional_notes` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `UID` int(11) NOT NULL,
+  `USERNAME` varchar(50) NOT NULL,
+  `EMAIL` varchar(255) NOT NULL,
+  `PASSWORD` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`UID`, `USERNAME`, `EMAIL`, `PASSWORD`) VALUES
+(1, 'teachadmin', 'teach@admin.org', '$2a$12$R2d6x2Hz2C99kqJDj/qsZu0R9DCSEkMaNtJo/j/jhnUDYqNi98FSG');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `approval`
 --
 
 CREATE TABLE `approval` (
   `APPROVAL_ID` int(10) NOT NULL,
   `STAFF_ID` int(10) NOT NULL,
-  `NEXT_REVIEW_DATE` date DEFAULT NULL,
-  `APPROVAL_DATE` date NOT NULL,
-  `TEACHING_LOCATION` varchar(50) NOT NULL,
-  `AQF_LEVEL_ID` int(10) NOT NULL,
-  `AADMIN_MANAGER_ID` int(10) NOT NULL,
-  `COURSE_ID` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `aqf_levels`
---
-
-CREATE TABLE `aqf_levels` (
-  `AQF_LEVEL_ID` int(10) NOT NULL,
-  `QUALIFICATION_DEGREE` varchar(100) NOT NULL,
-  `AQF_LEVEL` varchar(20) NOT NULL,
-  `QUALIFICATION_REQUIREMENT` varchar(20) NOT NULL
+  `STATUS` int(10) DEFAULT NULL,
+  `APPROVAL_DATE` datetime NOT NULL,
+  `ADMIN_MANAGER_ID` int(10) NOT NULL,
+  `REVIEW` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -137,20 +144,6 @@ CREATE TABLE `qualifications` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `review`
---
-
-CREATE TABLE `review` (
-  `REVIEW_ID` int(10) NOT NULL,
-  `APPROVAL_ID` int(10) NOT NULL,
-  `REVIEW_DATE` date NOT NULL,
-  `ADMING_MANAGER_ID` int(10) NOT NULL,
-  `OUTCOME` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `staff`
 --
 
@@ -192,17 +185,17 @@ ALTER TABLE `additional_notes`
   ADD PRIMARY KEY (`STAFF_ID`);
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`UID`),
+  ADD UNIQUE KEY `USERNAME` (`USERNAME`);
+
+--
 -- Indexes for table `approval`
 --
 ALTER TABLE `approval`
-  ADD PRIMARY KEY (`APPROVAL_ID`),
-  ADD KEY `FK_APPROVAL_AQF_LEVEL_ID` (`AQF_LEVEL_ID`);
-
---
--- Indexes for table `aqf_levels`
---
-ALTER TABLE `aqf_levels`
-  ADD KEY `FK_AQF_LEVEL_ID` (`AQF_LEVEL_ID`);
+  ADD PRIMARY KEY (`APPROVAL_ID`);
 
 --
 -- Indexes for table `documents`
@@ -230,13 +223,6 @@ ALTER TABLE `qualifications`
   ADD PRIMARY KEY (`AQF_Level_ID`);
 
 --
--- Indexes for table `review`
---
-ALTER TABLE `review`
-  ADD PRIMARY KEY (`REVIEW_ID`),
-  ADD KEY `FK_REVIEW_APPROVAL_ID` (`APPROVAL_ID`);
-
---
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
@@ -259,16 +245,16 @@ ALTER TABLE `additional_notes`
   MODIFY `STAFF_ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `approval`
 --
 ALTER TABLE `approval`
   MODIFY `APPROVAL_ID` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `aqf_levels`
---
-ALTER TABLE `aqf_levels`
-  MODIFY `AQF_LEVEL_ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `documents`
@@ -295,12 +281,6 @@ ALTER TABLE `qualifications`
   MODIFY `AQF_Level_ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `review`
---
-ALTER TABLE `review`
-  MODIFY `REVIEW_ID` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
@@ -311,14 +291,4 @@ ALTER TABLE `staff`
 --
 ALTER TABLE `teaching_experience`
   MODIFY `STAFF_ID` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `review`
---
-ALTER TABLE `review`
-  ADD CONSTRAINT `FK_REVIEW_APPROVAL_ID` FOREIGN KEY (`APPROVAL_ID`) REFERENCES `approval` (`APPROVAL_ID`);
 COMMIT;
