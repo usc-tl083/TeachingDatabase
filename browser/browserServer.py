@@ -10,6 +10,7 @@ import bcrypt
 from beaker.middleware import SessionMiddleware
 
 message=""
+stored_username = ""
 
 class BrowserServer:
 
@@ -108,14 +109,15 @@ class BrowserServer:
 
             if result:
                 stored_password = result[0]
-                stored_username = result[1]
+                global stored_username
                 # Verify the entered password against the stored hash
                 if bcrypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
                     # Passwords match; you can now create a session or redirect to a dashboard
                     # Set a session variable to mark the user as authenticated
                     session = request.environ.get('beaker.session')
-                    session['authenticated'] = True
-                    return redirect('/dashboard?admin=%s' % stored_username)
+                    session['authenticated'] = True                   
+                    stored_username = result[1]
+                    return redirect('/dashboard')
                 else:
                     return "Login failed. Please check your credentials."
             else:
@@ -124,10 +126,9 @@ class BrowserServer:
         # Define a route for the success page (you can replace this with your actual dashboard)
         @route('/dashboard')
         def dashboard():
-            stored_username = request.query.admin
             with dbcon() as db:
                 dcurs = db.opendb().cursor(buffered=True)
-                query = "SELECT * FROM staff"
+                query = "SELECT * FROM staff ORDER BY staff_id DESC"
                 dcurs.execute(query)
                 datas = dcurs.fetchall()
 
