@@ -101,20 +101,21 @@ class BrowserServer:
                 dcurs = db.opendb().cursor(buffered=True)
 
                 # Query the database to fetch the user's hashed password
-                dcurs.execute("SELECT password FROM admin WHERE email = %s", (email,))
+                dcurs.execute("SELECT password, username FROM admin WHERE email = %s", (email,))
                 result = dcurs.fetchone()
 
                 dcurs.close()
 
             if result:
                 stored_password = result[0]
+                stored_username = result[1]
                 # Verify the entered password against the stored hash
                 if bcrypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
                     # Passwords match; you can now create a session or redirect to a dashboard
                     # Set a session variable to mark the user as authenticated
                     session = request.environ.get('beaker.session')
                     session['authenticated'] = True
-                    return redirect('/dashboard')
+                    return redirect('/dashboard?admin=%s' % stored_username)
                 else:
                     return "Login failed. Please check your credentials."
             else:
@@ -123,6 +124,7 @@ class BrowserServer:
         # Define a route for the success page (you can replace this with your actual dashboard)
         @route('/dashboard')
         def dashboard():
+            stored_username = request.query.admin
             with dbcon() as db:
                 dcurs = db.opendb().cursor(buffered=True)
                 query = "SELECT * FROM staff"
@@ -134,7 +136,7 @@ class BrowserServer:
             session = request.environ.get('beaker.session')
             if 'authenticated' in session and session['authenticated']:
 
-                return template('dashboard.html', data=datas, tpltitle="Dashboard")
+                return template('dashboard.html', data=datas, tpltitle="Dashboard", stored_username=stored_username)
             else:
                 # If not authenticated, redirect to the login page or display an error message
                 return redirect('/login')
