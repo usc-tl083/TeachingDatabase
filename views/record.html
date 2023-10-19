@@ -201,13 +201,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="mt-4 mb-0">
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                    <a class="btn btn-primary me-md-2" href="login.html">Approve</a>
-                                                    <a class="btn btn-danger" href="login.html">Disapprove</a></div>
-                                            </div>
                                         </form>
+                                        <div class="mt-4 mb-0">
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                <form method="post" action="/approval">
+                                                    <input type="hidden" name="approval_staff_id" id="approval_staff_id" value="{{data [0]}}">
+                                                    <input type="hidden" name="approval_admin" id="approval_admin" value="{{data [40]}}">
+                                                    <input type="submit" name="approval_status" id="approval_status" value="Approve" class="btn btn-primary me-md-2" {{!'disabled="disabled"' if approval_data else ""}}>
+                                                    <input type="submit" name="approval_status" id="approval_status" value="Disapprove" class="btn btn-danger" {{!'disabled="disabled"' if approval_data else ""}}>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="card-footer text-center py-3">
                                         <div class="small"><a href="/dashboard">Cancel</a></div>

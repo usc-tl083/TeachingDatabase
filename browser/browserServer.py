@@ -127,6 +127,7 @@ class BrowserServer:
         @route('/dashboard')
         def dashboard():
             record = request.query.record
+            message = request.query.message
             with dbcon() as db:
                 dcurs = db.opendb().cursor(buffered=True)
                 if record == 'qualification': 
@@ -145,7 +146,7 @@ class BrowserServer:
             session = request.environ.get('beaker.session')
             if 'authenticated' in session and session['authenticated']:
 
-                return template('dashboard.html', data=datas, tpltitle="Dashboard", stored_username=stored_username, record=record)
+                return template('dashboard.html', data=datas, tpltitle="Dashboard", stored_username=stored_username, record=record, message=message)
             else:
                 # If not authenticated, redirect to the login page or display an error message
                 return redirect('/login')
@@ -156,12 +157,14 @@ class BrowserServer:
             with dbcon() as db:
                 dcurs = db.opendb().cursor(buffered=True)
                 dcurs.execute(
-                    "SELECT * FROM staff AS a INNER JOIN qualifications AS b ON a.STAFF_ID = b.AQF_Level_ID INNER JOIN teaching_experience AS c ON a.STAFF_ID = c.STAFF_ID INNER JOIN other_experience AS d ON a.STAFF_ID = d.STAFF_ID INNER JOIN additional_notes AS e ON a.STAFF_ID = e.STAFF_ID INNER JOIN publications AS f ON a.STAFF_ID = f.PUBLICATION_ID WHERE a.STAFF_ID = %s", [staff_id]
+                    "SELECT * FROM staff AS a INNER JOIN qualifications AS b ON a.STAFF_ID = b.AQF_Level_ID INNER JOIN teaching_experience AS c ON a.STAFF_ID = c.STAFF_ID INNER JOIN other_experience AS d ON a.STAFF_ID = d.STAFF_ID INNER JOIN additional_notes AS e ON a.STAFF_ID = e.STAFF_ID INNER JOIN publications AS f ON a.STAFF_ID = f.PUBLICATION_ID INNER JOIN admin AS g ON g.USERNAME = %s WHERE a.STAFF_ID = %s", [stored_username, staff_id]
                     )
                 data = dcurs.fetchone()
+                dcurs.execute("SELECT * FROM approval WHERE staff_id = %s", [staff_id])
+                approval_data = dcurs.fetchone()
                 dcurs.close()
 
-            return template('record.html', data=data, tpltitle="Staff Record")
+            return template('record.html', data=data, approval_data=approval_data, tpltitle="Staff Record")
         
         # This is where the submitted form data is processed to add the data to the database
         # Database is connected here within this route/function and added to the respective tables
@@ -245,6 +248,28 @@ class BrowserServer:
                 conx.close()
 
             return template('login21', tpltitle="Teaching Database", message="success-form")
+        
+        # This is where the approval form data is processed to add the data to the database
+        # Database is connected here within this route/function and added to the approval table
+        @route('/approval', method='POST')
+        def approval():
+            staff_id = request.forms.get('approval_staff_id')
+            status = request.forms.get('approval_status')
+            admin = request.forms.get('approval_admin')
+
+            with dbcon() as db:
+                conx = db.opendb()
+                dcurs = conx.cursor(buffered=True)
+
+                #Inserting data to approval table
+                query = "INSERT INTO approval (staff_id, status, admin_manager) VALUES (%s, %s, %s)"
+                dcurs.execute(query, (staff_id, status, admin))
+                conx.commit()
+
+                dcurs.close()
+                conx.close()
+
+            return redirect('/dashboard?message=%s' % status)
         
         # @route('/static/js/<filename:path>')
         # def serve_js(filename):
