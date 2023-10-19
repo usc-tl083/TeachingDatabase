@@ -92,7 +92,7 @@
                                 <div class="card bg-success text-white mb-4">
                                     <div class="card-body">Approved Records</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Records</a>
+                                        <a class="small text-white stretched-link" href="/dashboard?record=approved_records">View Records</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">Pending Approvals</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Records</a>
+                                        <a class="small text-white stretched-link" href="/dashboard?record=pending_records">View Records</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -110,7 +110,7 @@
                                 <div class="card bg-danger text-white mb-4">
                                     <div class="card-body">Disapproved Records</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Records</a>
+                                        <a class="small text-white stretched-link" href="/dashboard?record=disapproved_records">View Records</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -131,145 +131,7 @@
                                     % end
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        % if record == 'qualification':
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Qualification Name</th>
-                                            <th>Subject Area</th>
-                                            <th>Institution Name</th>
-                                            <th>Year Issued</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        % elif record == 'experience':
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Teaching Period</th>
-                                            <th>Course Title</th>
-                                            <th>Organisation Name</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        % elif record == 'publication':
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Author Name</th>
-                                            <th>Publication Title</th>
-                                            <th>Publication Year</th>
-                                            <th>Publication Type</th>
-                                            <th>Peer Reviewed</th>
-                                            <th>Classification</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        % else:
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Gender</th>
-                                            <th>First Name</th>
-                                            <th>Middle Name</th>
-                                            <th>Last Name</th>
-                                            <th>Date of Birth</th>
-                                            <th>Address</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        % end
-                                    </thead>
-                                    <tfoot>
-                                        % if record == 'qualification':
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Qualification Name</th>
-                                            <th>Subject Area</th>
-                                            <th>Institution Name</th>
-                                            <th>Year Issued</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        % elif record == 'experience':
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Teaching Period</th>
-                                            <th>Course Title</th>
-                                            <th>Organisation Name</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        % elif record == 'publication':
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Author Name</th>
-                                            <th>Publication Title</th>
-                                            <th>Publication Year</th>
-                                            <th>Publication Type</th>
-                                            <th>Peer Reviewed</th>
-                                            <th>Classification</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        % else:
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Gender</th>
-                                            <th>First Name</th>
-                                            <th>Middle Name</th>
-                                            <th>Last Name</th>
-                                            <th>Date of Birth</th>
-                                            <th>Address</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        % end
-                                    </tfoot>
-                                    <tbody>
-                                        % for item in data:
-                                            % if record == 'qualification':
-                                            <tr>
-                                                <td>{{ item [1]}}</td>
-                                                <td>{{ item [2]}}</td>
-                                                <td>{{ item [3]}}</td>
-                                                <td>{{ item [4]}}</td>
-                                                <td>{{ item [5]}}</td>
-                                                <td><a href="/display_data/{{ item[1] }}" class="btn btn-sm btn-outline-primary">View</a></td>
-                                            </tr>
-                                            % elif record == 'experience':
-                                            <tr>
-                                                <td>{{ item [0]}}</td>
-                                                <td>{{ item [1]}}</td>
-                                                <td>{{ item [3]}}</td>
-                                                <td>{{ item [4]}}</td>
-                                                <td>{{ item [5]}}</td>
-                                                <td><a href="/display_data/{{ item[0] }}" class="btn btn-sm btn-outline-primary">View</a></td>
-                                            </tr>
-                                            % elif record == 'publication':
-                                            <tr>
-                                                <td>{{ item [0]}}</td>
-                                                <td>{{ item [2]}}</td>
-                                                <td>{{ item [3]}}</td>
-                                                <td>{{ item [4]}}</td>
-                                                <td>{{ item [5]}}</td>
-                                                <td>{{ item [6]}}</td>
-                                                <td>{{ item [7]}}</td>
-                                                <td><a href="/display_data/{{ item[0] }}" class="btn btn-sm btn-outline-primary">View</a></td>
-                                            </tr>
-                                            % else:
-                                            <tr>
-                                                <td>{{ item [0]}}</td>
-                                                <td>{{ item [1].upper()}}</td>
-                                                <td>{{ item [2]}}</td>
-                                                <td>{{ item [3]}}</td>
-                                                <td>{{ item [4]}}</td>
-                                                <td>{{ item [5]}}</td>
-                                                <td>{{ item [6]}}</td>
-                                                <td>{{ item [7]}}</td>
-                                                <td>{{ item [8]}}</td>
-                                                <td><a href="/display_data/{{ item[0] }}" class="btn btn-sm btn-outline-primary">View</a></td>
-                                            </tr>
-                                            % end
-                                        % end
-                                    </tbody>
-                                </table>
+                                {{ !html_table }}
                             </div>
                         </div>
                     </div>

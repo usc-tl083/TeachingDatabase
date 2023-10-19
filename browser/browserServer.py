@@ -17,7 +17,7 @@ class BrowserServer:
     # Beaker session configuration
     session_opts = {
         'session.type': 'memory',
-        'session.cookie_expires': 300,  # Session expires after 300 seconds (adjust as needed)
+        'session.cookie_expires': 600,  # Session expires after 600 seconds (adjust as needed)
         'session.auto': True,
     }
 
@@ -135,18 +135,26 @@ class BrowserServer:
                 elif record == 'experience':
                     query = "SELECT * FROM teaching_experience ORDER BY staff_id DESC"
                 elif record == 'publication':
-                    query ="SELECT * FROM publications ORDER BY publication_id DESC"
+                    query = "SELECT * FROM publications ORDER BY publication_id DESC"
+                elif record == 'approved_records':
+                    query = "SELECT * FROM staff AS a INNER JOIN approval AS b ON a.STAFF_ID = b.STAFF_ID WHERE b.STATUS = 'Approve' ORDER BY a.staff_id DESC"
+                elif record == 'pending_records':
+                    query = "SELECT * FROM staff LEFT JOIN approval ON staff.staff_id = approval.staff_id WHERE approval.staff_id IS NULL ORDER BY staff.staff_id DESC"
+                elif record == 'disapproved_records':
+                    query = "SELECT * FROM staff AS a INNER JOIN approval AS b ON a.STAFF_ID = b.STAFF_ID WHERE b.STATUS = 'Disapprove' ORDER BY a.staff_id DESC"
                 else:
                     query = "SELECT * FROM staff ORDER BY staff_id DESC"
                 dcurs.execute(query)
                 datas = dcurs.fetchall()
+
+                html_table = ProcessServer.generate_table(record, datas)
 
                 dcurs.close()
             # Check if the user is authenticated by inspecting the session variable
             session = request.environ.get('beaker.session')
             if 'authenticated' in session and session['authenticated']:
 
-                return template('dashboard.html', data=datas, tpltitle="Dashboard", stored_username=stored_username, record=record, message=message)
+                return template('dashboard.html', data=datas, tpltitle="Dashboard", stored_username=stored_username, record=record, message=message, html_table=html_table)
             else:
                 # If not authenticated, redirect to the login page or display an error message
                 return redirect('/login')
