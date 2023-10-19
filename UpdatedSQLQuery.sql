@@ -135,10 +135,10 @@ CREATE TABLE `publications` (
 CREATE TABLE `qualifications` (
   `STAFF_ID` int(10) DEFAULT NULL,
   `AQF_Level_ID` int(10) NOT NULL,
-  `QUALIFICATION_NAME` varchar(100) NOT NULL,
-  `SUBJECT_AREA` varchar(100) NOT NULL,
-  `INSTITUTION_NAME` varchar(100) NOT NULL,
-  `YEAR_ISSUED` int(4) NOT NULL
+  `QUALIFICATION_NAME` varchar(100) DEFAULT NULL,
+  `SUBJECT_AREA` varchar(100) DEFAULT NULL,
+  `INSTITUTION_NAME` varchar(100) DEFAULT NULL,
+  `YEAR_ISSUED` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -149,14 +149,14 @@ CREATE TABLE `qualifications` (
 
 CREATE TABLE `staff` (
   `STAFF_ID` int(10) NOT NULL,
-  `GENDER` varchar(6) NOT NULL,
-  `FIRST_NAME` varchar(50) NOT NULL,
+  `GENDER` varchar(6) DEFAULT NULL,
+  `FIRST_NAME` varchar(50) DEFAULT NULL,
   `MIDDLE_NAME` varchar(50) DEFAULT NULL,
-  `LAST_NAME` varchar(50) NOT NULL,
-  `dob` date NOT NULL,
-  `ADDRESS` varchar(50) NOT NULL,
-  `EMAIL` varchar(100) NOT NULL,
-  `PHONE` varchar(12) NOT NULL
+  `LAST_NAME` varchar(50) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `ADDRESS` varchar(50) DEFAULT NULL,
+  `EMAIL` varchar(100) DEFAULT NULL,
+  `PHONE` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -167,11 +167,11 @@ CREATE TABLE `staff` (
 
 CREATE TABLE `teaching_experience` (
   `STAFF_ID` int(10) NOT NULL,
-  `TEACHING_PERIOD` varchar(50) NOT NULL,
+  `TEACHING_PERIOD` varchar(50) DEFAULT NULL,
   `COURSE_ID` int(10) DEFAULT NULL,
-  `COURSE_TITLE` varchar(50) NOT NULL,
-  `ORGANISATION_NAME` varchar(255) NOT NULL,
-  `ROLE` varchar(255) NOT NULL
+  `COURSE_TITLE` varchar(50) DEFAULT NULL,
+  `ORGANISATION_NAME` varchar(255) DEFAULT NULL,
+  `ROLE` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
