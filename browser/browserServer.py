@@ -126,9 +126,17 @@ class BrowserServer:
         # Define a route for the success page (you can replace this with your actual dashboard)
         @route('/dashboard')
         def dashboard():
+            record = request.query.record
             with dbcon() as db:
                 dcurs = db.opendb().cursor(buffered=True)
-                query = "SELECT * FROM staff ORDER BY staff_id DESC"
+                if record == 'qualification': 
+                    query = "SELECT * FROM qualifications ORDER BY aqf_level_id DESC"
+                elif record == 'experience':
+                    query = "SELECT * FROM teaching_experience ORDER BY staff_id DESC"
+                elif record == 'publication':
+                    query ="SELECT * FROM publications ORDER BY publication_id DESC"
+                else:
+                    query = "SELECT * FROM staff ORDER BY staff_id DESC"
                 dcurs.execute(query)
                 datas = dcurs.fetchall()
 
@@ -137,7 +145,7 @@ class BrowserServer:
             session = request.environ.get('beaker.session')
             if 'authenticated' in session and session['authenticated']:
 
-                return template('dashboard.html', data=datas, tpltitle="Dashboard", stored_username=stored_username)
+                return template('dashboard.html', data=datas, tpltitle="Dashboard", stored_username=stored_username, record=record)
             else:
                 # If not authenticated, redirect to the login page or display an error message
                 return redirect('/login')
