@@ -48,13 +48,13 @@
                     <div class="question">
                         <label>Gender<span style="color: red; margin: 0px;">*</span></label>
                         <div class="question-answer">
-                            <div class="cols">
-                                <input type="radio" value="male" id="male" name="gender" required/>
-                                <label for="male" class="radio rows"><span>Male</span></label>
-                                <input type="radio" value="female" id="female" name="gender" />
-                                <label for="female" class="radio"><span>Female</span></label>
-                                <input type="radio" value="other" id="other" name="gender" />
-                                <label for="other" class="radio"><span>Other</span></label>
+                            <div class="cols">                                
+                                <select name="gender" id="gender" required>
+                                    <option value="" selected disabled>-- Select Gender --</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
             </fieldset>
             <div class="item">
                 <label for="other-info">Other Information</label>
-                <textarea id="other-info" name="other-info" rows="5" onfocus="value=''">Please provide us with any other relevant information you believe is relevant.</textarea>
+                <textarea id="other-info" name="other-info" rows="5">Please provide us with any other relevant information you believe is relevant.</textarea>
             </div>
             <fieldset>
                 <legend>Publications</legend>

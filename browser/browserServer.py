@@ -153,7 +153,6 @@ class BrowserServer:
             # Check if the user is authenticated by inspecting the session variable
             session = request.environ.get('beaker.session')
             if 'authenticated' in session and session['authenticated']:
-
                 return template('dashboard.html', data=datas, tpltitle="Dashboard", stored_username=stored_username, record=record, message=message, html_table=html_table)
             else:
                 # If not authenticated, redirect to the login page or display an error message
@@ -172,7 +171,13 @@ class BrowserServer:
                 approval_data = dcurs.fetchone()
                 dcurs.close()
 
-            return template('record.html', data=data, approval_data=approval_data, tpltitle="Staff Record")
+            # Check if the user is authenticated by inspecting the session variable
+            session = request.environ.get('beaker.session')
+            if 'authenticated' in session and session['authenticated']:
+                return template('record.html', data=data, approval_data=approval_data, tpltitle="Staff Record")
+            else:
+                # If not authenticated, redirect to the login page or display an error message
+                return redirect('/login')
         
         # This is where the submitted form data is processed to add the data to the database
         # Database is connected here within this route/function and added to the respective tables

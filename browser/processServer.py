@@ -1,7 +1,5 @@
 # https://bottlepy.org/docs/dev/index.html
 from browser.bottle import template, HTTPResponse
-from utilities.clsArticle import Article
-from utilities.clsArticleNote import ArticleNote
 
 class ProcessServer:
 
